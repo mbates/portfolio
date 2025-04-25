@@ -1,7 +1,5 @@
 import './HomePage.scss';
 import Logo from '../components/Logo';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import Terminal from '../components/Terminal';
 
 export default function HomePage() {
