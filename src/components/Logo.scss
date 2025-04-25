@@ -1,0 +1,92 @@
+.logo {
+  width: 150px;
+  height: 100px;
+}
+
+.logo:before {
+  content: '';
+  width: 98px;
+  height: 10px;
+  top: -10px;
+  left: 20px;
+}
+
+.box-1 {
+  width: 56px;
+  height: 56px;
+  top: 20px;
+  right: 10px;
+  animation: logo-box 2.5s ease-in-out;
+}
+
+.box-2 {
+  width: 32px;
+  height: 32px;
+  top: -16px;
+  right: 43px;
+  animation: logo-box 3.1s ease-in-out;
+}
+
+.box-3 {
+  width: 30px;
+  height: 30px;
+  top: -32px;
+  left: 37px;
+  animation: logo-box 2.3s ease-in-out;
+}
+
+.box-4 {
+  width: 20px;
+  height: 20px;
+  top: 34px;
+  left: 44px;
+  animation: logo-box 2.1s ease-in-out;
+}
+
+.box-5 {
+  width: 16px;
+  height: 16px;
+  top: 9px;
+  left: 28px;
+  animation: logo-box 2.8s ease-in-out;
+}
+
+.box-6 {
+  width: 12px;
+  height: 12px;
+  bottom: 30px;
+  left: 27px;
+  animation: logo-box 1.8s ease-in-out;
+}
+
+@keyframes logo-box {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0) scaleY(3);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0) scaleY(0.9);
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0) scaleY(0.95);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0) scaleY(0.985);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
