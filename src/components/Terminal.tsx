@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './Terminal.scss';
 import { ReactTerminal } from 'react-terminal';
 
 const Terminal: React.FC = () => {
@@ -7,12 +6,12 @@ const Terminal: React.FC = () => {
   const [project, setProject] = useState(''); // switch to reduc
   const welcomeMessage = (
     <div>
-      Type <span className='command-name'>help</span> for commands
+      Type <span className='text-yellow-200'>help</span> for commands
     </div>
   );
   const prompt = (
     <span>
-      <span className='prompt'>https://bates-solutions.com</span> &gt;
+      <span className='text-gray-400'>https://bates-solutions.com</span> &gt;
     </span>
   );
   const commands = {
@@ -31,11 +30,11 @@ const Terminal: React.FC = () => {
     },
     ls: (
       <div>
-        <span className='command-name'>casechek</span>
+        <span className='text-yellow-200'>casechek</span>
         <br />
-        <span className='command-name'>opskwan</span>
+        <span className='text-yellow-200'>opskwan</span>
         <br />
-        <span className='command-name'>mickles</span>
+        <span className='text-yellow-200'>mickles</span>
         <br />
       </div>
     ),
@@ -45,18 +44,21 @@ const Terminal: React.FC = () => {
     },
     help: (
       <div>
-        <span className='command-name'>clear </span>
+        <span className='text-yellow-200'>help </span>
+        show all commands
+        <br />
+        <span className='text-yellow-200'>clear </span>
         clears the console
         <br />
-        <span className='command-name'>about </span>
+        <span className='text-yellow-200'>about </span>
         what we're all about?
         <br />
-        <span className='command-name'>send [message] </span>
+        <span className='text-yellow-200'>send [message] </span>
         send us a message
         <br />
-        <span className='command-name'>ls </span>
+        <span className='text-yellow-200'>ls </span>
         list the projects we've worked on <br />
-        <span className='command-name'>show [project] </span>
+        <span className='text-yellow-200'>show [project] </span>
         show project details
         <br />
       </div>
@@ -76,7 +78,7 @@ const Terminal: React.FC = () => {
   };
 
   return (
-    <div className='terminal'>
+    <div className='w-f h-80'>
       <ReactTerminal
         welcomeMessage={welcomeMessage}
         showControlBar={false}
