@@ -16,12 +16,12 @@ const Mickles: React.FC = () => {
       </p>
       <p className='my-5'>
         Bates Solutions architected and built a custom e-commerce website,
-        integrated with their payment provider{' '}
+        integrated with Mickles' payment provider{' '}
         <Link to='https://squareup.com/us/en' className='text-blue-500'>
           squareup.com
         </Link>
         . We designed the UI and UX to match the branding and brand language
-        that Mickles hadclear established.
+        that Mickles had established.
       </p>
 
       <h2 className='text-3xl font-semibold tracking-tight my-5'>

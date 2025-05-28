@@ -32,8 +32,8 @@ const About: React.FC = () => {
         Custom Software Development
       </h3>
       <p className='my-5'>
-        Some times business problems can't be solved with off the shelf
-        software. Bates Solutions has experience with{' '}
+        Sometimes business problems can't be solved with off the shelf software.
+        Bates Solutions has experience with{' '}
         <Link
           target='_blank'
           to='https://visualstudio.microsoft.com/vs/community'
@@ -49,8 +49,8 @@ const About: React.FC = () => {
         >
           Electron
         </Link>
-        , building Kiosk applications for Windows with the former, and cross
-        platfoprm applications with the later.
+        , building Windows applications with the former, and cross platform
+        applications with the later.
       </p>
 
       <h3 className='text-2xl font-semibold tracking-tight my-3'>
@@ -58,7 +58,7 @@ const About: React.FC = () => {
       </h3>
       <p className='my-5'>
         There are many ways to get software into the hands of your users &
-        customers. When developing Web application we have experience with{' '}
+        customers. We have experience developing web applications{' '}
         <Link
           target='_blank'
           to='https://angular.dev'
@@ -70,7 +70,7 @@ const About: React.FC = () => {
         <Link target='_blank' to='https://react.dev' className='text-blue-500'>
           React
         </Link>
-        . For backend systems, we have experience with{' '}
+        . For backend systems, we have built experience with{' '}
         <Link
           target='_blank'
           to='https://www.php.net'

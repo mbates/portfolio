@@ -10,8 +10,8 @@ const Bates: React.FC = () => {
       <p className='my-5'>
         Simple microservices application built with Kubernetes, TypeScript,
         Express, Nats and Mongo. This project demonstrates how to structure a
-        Microservice with an auth service and an example service that publishes
-        and subscribes to a nats service.
+        microservice application, it has an auth service and an example service
+        that publishes & subscribes to a nats service.
         <br />
         <Link
           target='_blank'

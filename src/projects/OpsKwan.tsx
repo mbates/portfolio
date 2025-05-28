@@ -13,8 +13,7 @@ const OpsKwan: React.FC = () => {
       <p className='my-5'>
         Bates Solutions started working with OpsKwan once a prrof of concept
         application had been developed. We were tasked with rebuilding the
-        prototype into a secure and reliable SaaS tenanted application with a
-        limited budget and timeframe.
+        prototype into a secure and reliable SaaS, tenanted application.
       </p>
       <p className='my-5'>
         OpsKwan was deployed across Canada with ZimmerBiomet in 2011. It was one
