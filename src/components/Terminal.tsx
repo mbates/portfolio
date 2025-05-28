@@ -1,20 +1,32 @@
-import { useState } from 'react';
-import './Terminal.scss';
 import { ReactTerminal } from 'react-terminal';
+import { projects } from './Project';
 
-const Terminal: React.FC = () => {
-  const [content, setContent] = useState(''); // switch to redux
-  const [project, setProject] = useState(''); // switch to reduc
+interface TerminalProps {
+  setContent: (content: string) => void;
+  setProject: (project: string) => void;
+}
+
+const Terminal: React.FC<TerminalProps> = ({
+  setContent,
+  setProject,
+}: TerminalProps) => {
   const welcomeMessage = (
     <div>
-      Type <span className='command-name'>help</span> for commands
+      Type <span className='text-yellow-200'>help</span> for commands
     </div>
   );
   const prompt = (
     <span>
-      <span className='prompt'>https://bates-solutions.com</span> &gt;
+      <span className='text-gray-400'>https://bates-solutions.com</span> &gt;
     </span>
   );
+  const projectList = projects.map((p) => {
+    return (
+      <p key={p}>
+        <span className='text-yellow-200'>{p}</span>
+      </p>
+    );
+  });
   const commands = {
     about: () => {
       setContent('about');
@@ -29,34 +41,32 @@ const Terminal: React.FC = () => {
       setProject('');
       console.log('sending: ', message);
     },
-    ls: (
-      <div>
-        <span className='command-name'>casechek</span>
-        <br />
-        <span className='command-name'>opskwan</span>
-        <br />
-        <span className='command-name'>mickles</span>
-        <br />
-      </div>
-    ),
+    ls: <div>{projectList}</div>,
     show: (project: string) => {
-      setContent('project');
-      setProject(project);
+      if (projects.includes(project)) {
+        setContent('project');
+        setProject(project);
+      } else {
+        return `The project "${project}" doesn't exist`;
+      }
     },
     help: (
       <div>
-        <span className='command-name'>clear </span>
+        <span className='text-yellow-200'>help </span>
+        show all commands
+        <br />
+        <span className='text-yellow-200'>clear </span>
         clears the console
         <br />
-        <span className='command-name'>about </span>
+        <span className='text-yellow-200'>about </span>
         what we're all about?
         <br />
-        <span className='command-name'>send [message] </span>
+        {/* <span className='text-yellow-200'>send [message] </span>
         send us a message
-        <br />
-        <span className='command-name'>ls </span>
+        <br /> */}
+        <span className='text-yellow-200'>ls </span>
         list the projects we've worked on <br />
-        <span className='command-name'>show [project] </span>
+        <span className='text-yellow-200'>show [project] </span>
         show project details
         <br />
       </div>
@@ -76,7 +86,7 @@ const Terminal: React.FC = () => {
   };
 
   return (
-    <div className='terminal'>
+    <div className='w-f h-80'>
       <ReactTerminal
         welcomeMessage={welcomeMessage}
         showControlBar={false}
@@ -86,12 +96,6 @@ const Terminal: React.FC = () => {
         defaultHandler={defaultHandler}
         prompt={prompt}
       />
-      <div>
-        {content}{' '}
-        {project &&
-          `- ${project}help
-        `}
-      </div>
     </div>
   );
 };
