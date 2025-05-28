@@ -1,9 +1,15 @@
-import { useState } from 'react';
 import { ReactTerminal } from 'react-terminal';
+import { projects } from './Project';
 
-const Terminal: React.FC = () => {
-  const [content, setContent] = useState(''); // switch to redux
-  const [project, setProject] = useState(''); // switch to reduc
+interface TerminalProps {
+  setContent: (content: string) => void;
+  setProject: (project: string) => void;
+}
+
+const Terminal: React.FC<TerminalProps> = ({
+  setContent,
+  setProject,
+}: TerminalProps) => {
   const welcomeMessage = (
     <div>
       Type <span className='text-yellow-200'>help</span> for commands
@@ -14,6 +20,13 @@ const Terminal: React.FC = () => {
       <span className='text-gray-400'>https://bates-solutions.com</span> &gt;
     </span>
   );
+  const projectList = projects.map((p) => {
+    return (
+      <p key={p}>
+        <span className='text-yellow-200'>{p}</span>
+      </p>
+    );
+  });
   const commands = {
     about: () => {
       setContent('about');
@@ -28,19 +41,14 @@ const Terminal: React.FC = () => {
       setProject('');
       console.log('sending: ', message);
     },
-    ls: (
-      <div>
-        <span className='text-yellow-200'>casechek</span>
-        <br />
-        <span className='text-yellow-200'>opskwan</span>
-        <br />
-        <span className='text-yellow-200'>mickles</span>
-        <br />
-      </div>
-    ),
+    ls: <div>{projectList}</div>,
     show: (project: string) => {
-      setContent('project');
-      setProject(project);
+      if (projects.includes(project)) {
+        setContent('project');
+        setProject(project);
+      } else {
+        return `The project "${project}" doesn't exist`;
+      }
     },
     help: (
       <div>
@@ -53,9 +61,9 @@ const Terminal: React.FC = () => {
         <span className='text-yellow-200'>about </span>
         what we're all about?
         <br />
-        <span className='text-yellow-200'>send [message] </span>
+        {/* <span className='text-yellow-200'>send [message] </span>
         send us a message
-        <br />
+        <br /> */}
         <span className='text-yellow-200'>ls </span>
         list the projects we've worked on <br />
         <span className='text-yellow-200'>show [project] </span>
@@ -88,12 +96,6 @@ const Terminal: React.FC = () => {
         defaultHandler={defaultHandler}
         prompt={prompt}
       />
-      <div>
-        {content}{' '}
-        {project &&
-          `- ${project}help
-        `}
-      </div>
     </div>
   );
 };
