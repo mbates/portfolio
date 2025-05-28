@@ -11,29 +11,28 @@ const OpsKwan: React.FC = () => {
         solution to other Medical Device companies.
       </p>
       <p className='my-5'>
-        As Director of Development, I was tasked with designing a SaaS solution
-        with a limited budget and timeframe. After the solution launched, it was
-        expanded to work with multiple distributorships controlled by a primary
-        company.
+        Bates Solutions started working with OpsKwan once a prrof of concept
+        application had been developed. We were tasked with rebuilding the
+        prototype into a secure and reliable SaaS tenanted application with a
+        limited budget and timeframe.
       </p>
       <p className='my-5'>
-        OpsKwan was deployed across Canada with ZimmerBiomet in 2011 and is used
-        to manage their logistics for over 40% of the hospitals nationwide, it
-        is one of their business-critical systems.
+        OpsKwan was deployed across Canada with ZimmerBiomet in 2011. It was one
+        of their business-critical systems used to manage logistics for over 40%
+        of the hospitals nationwide.
       </p>
+
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Responsibilities
+        Services Provided
       </h2>
-      <ul className='list-disc'>
-        <li>
-          Architecting, deploying and iteratively building a backend system and
-          frontend application
-        </li>
-        <li>Researching and assessing technologies</li>
-        <li>Designing and deploying the infrastructure</li>
-        <li>Customer Success / Customer Support</li>
-        <li>Internal support (Sales & Accounting)</li>
-      </ul>
+      <p className='my-5'>
+        Architected, deployed and iteratively built backend and frontend
+        systems.
+      </p>
+      <p className='my-5'>
+        We also worked directly with OpsKwans' customers delivering specific
+        solutions within the OpsKwan system.
+      </p>
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
         Technologies
       </h2>

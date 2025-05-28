@@ -16,29 +16,28 @@ const Bates: React.FC = () => {
         <Link
           target='_blank'
           to='https://github.com/mbates/bates-solutions-example'
-          className='text-lg text-blue-500'
+          className='text-blue-500'
         >
           https://github.com/mbates/bates-solutions-example
         </Link>
       </p>
       <p className='my-5'>
-        The project includes 2 npm libraries to share code between services.
+        The project includes 2 npm libraries to share code between services:
         <br />
-        Common components to use with bates-solutions-example project
-        <br />
+        Common components to use with bates-solutions-example project{' '}
         <Link
           target='_blank'
           to=' https://github.com/mbates/bates-solutions-example-common'
-          className='text-lg text-blue-500'
+          className='text-blue-500'
         >
           https://github.com/mbates/bates-solutions-example-common
         </Link>
         <br />
-        Global components to use with Express projects <br />
+        Global components to use with Express projects{' '}
         <Link
           target='_blank'
           to=' https://github.com/mbates/bates-solutions-common'
-          className='text-lg text-blue-500'
+          className='text-blue-500'
         >
           https://github.com/mbates/bates-solutions-common
         </Link>
@@ -46,11 +45,13 @@ const Bates: React.FC = () => {
 
       <h2 className='text-5xl font-semibold tracking-tight'>Portfolio</h2>
       <p className='my-5'>
-        This portfolio website has been built with React
+        This portfolio website has been built with react react-terminal and
+        tailwindcss. It is deployed using Github Actions to AWS S3 & Cloudfront.
+        <br />
         <Link
           target='_blank'
           to='https://github.com/mbates/portfolio'
-          className='text-lg text-blue-500'
+          className='text-blue-500'
         >
           https://github.com/mbates/portfolio
         </Link>

@@ -6,7 +6,7 @@ const Mickles: React.FC = () => {
       <h2 className='text-5xl font-semibold tracking-tight'>
         Mickles Canning Inc.
       </h2>
-      <Link to='https://mandismickles.com' className='text-lg text-blue-500'>
+      <Link to='https://mandismickles.com' className='text-blue-500'>
         https://mandismickles.com
       </Link>
       <p className='my-5'>
@@ -15,26 +15,24 @@ const Mickles: React.FC = () => {
         business.
       </p>
       <p className='my-5'>
-        I architected and built a custom e-commerce website that interfaced with
-        their existing payment provider. Designing the UI and UX to match the
-        established brand.
+        Bates Solutions architected and built a custom e-commerce website,
+        integrated with their payment provider{' '}
+        <Link to='https://squareup.com/us/en' className='text-blue-500'>
+          squareup.com
+        </Link>
+        . We designed the UI and UX to match the branding and brand language
+        that Mickles hadclear established.
       </p>
-      <p className='my-5'>
-        I also supported the incorporation process of the company, helped build
-        technical documentation to meet regulatory requirements, and managed
-        their online technical business accounts.
-      </p>
+
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Responsibilities
+        Services Provided
       </h2>
-      <ul className='list-disc'>
-        <li>
-          Responsible for designing, building and managing the company’s web
-          presence and ecommerce strategy
-        </li>
-        <li>Supporting the business with start up advice</li>
-        <li>Providing technical support </li>
-      </ul>
+      <p className='my-5'>
+        Bates Solutions also supported them through the incorporation process,
+        helped build technical documentation to meet regulatory requirements,
+        and managed their online technical business accounts.
+      </p>
+
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
         Technologies
       </h2>

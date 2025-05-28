@@ -4,56 +4,42 @@ const Casechek: React.FC = () => {
   return (
     <div className='w-f h-80'>
       <h2 className='text-5xl font-semibold tracking-tight'>Casechek</h2>
-      <Link to='https://casechek.com' className='text-lg text-blue-500'>
+      <Link to='https://casechek.com' className='text-blue-500'>
         https://casechek.com
       </Link>
       <p className='my-5'>
         Casechek was founded to solve problems hospitals experience when
-        procuring medical devices for surgical procedures. We were the first to
-        market in this area and as the founding engineer, I had to architect a
-        novel solution that met HIPAA regulatory requirements.
+        procuring medical devices for surgical procedures. They were the first
+        to market in this area.
       </p>
       <p className='my-5'>
-        During my time with Casechek I gained a broad experience building an
-        industry first solution with limited resources. Moving on to growing an
-        engineering team and building a robust enterprise ready system with
-        them. We extended our platform and scaled to over 200 hospitals across
-        the US, adding integrations with a variety of hospital systems
-        automating numerous processes for them.
+        Bates Solutions was contracted to work with Casechek from its inception.
+        We built novel, industry first solutions with limited initial resources.
+        Helped grow an in house engineering team and built a robust enterprise
+        ready system with that team. The platform was extended and scaled to
+        over 200 hospitals across the US, adding integrations with a variety of
+        hospital systems, automating numerous processes for them.
       </p>
       <p className='my-5'>
-        We were recognized in the industry, winning the 2023 Chicago Innovation
-        award for newcomers, and the 2023 SMI Tom Hughes Collaboration award
-        with Northwestern Medicine.
+        While working with Casechek, they were recognized in the industry,
+        winning the 2023 Chicago Innovation award for newcomers, and the 2023
+        SMI Tom Hughes Collaboration award with Northwestern Medicine.
       </p>
+
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Responsibilities
+        Services Provided
       </h2>
-      <ul className='list-disc'>
-        <li>
-          Architecting, building and deploying 3 highly available, secure,
-          resilient backend systems
-        </li>
-        <li>
-          Architecting, building and deploying 8 easy to use web, mobile and
-          desktop applications
-        </li>
-        <li>Researching and assessing technologies</li>
-        <li>Designing and deploying scalable infrastructure on AWS</li>
-        <li>
-          Rearchitected technologies used in repositories, Travis CI to Github
-          Actions, CDK to Terraform and OAuth to Auth0
-        </li>
-        <li>
-          Supporting internal teams with technical solutions and “lunch and
-          learn” sessions
-        </li>
-        <li>
-          Responsible for full cycle employee experience for teams of up to 7
-          engineers, including hiring and selection, onboarding, mentorship and
-          development, and performance management
-        </li>
-      </ul>
+      <p className='my-5'>
+        Architected, built and deployed numerous highly available, secure,
+        resilient backend systems, and numerous easy to use web, mobile and
+        desktop applications.
+      </p>
+
+      <p className='my-5'>
+        Implemented CI to deploy the applications to AWS, iTunes and Play
+        stores. Utilizing tools like Github Actions, CDK and Terraform.
+      </p>
+
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
         Technologies
       </h2>
