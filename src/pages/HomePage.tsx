@@ -1,8 +1,15 @@
 import './HomePage.scss';
+import { useState } from 'react';
 import Logo from '../components/Logo';
 import Terminal from '../components/Terminal';
+import About from '../components/About';
+import Project from '../components/Project';
+import Contact from '../components/Contact';
 
 export default function HomePage() {
+  const [content, setContent] = useState('');
+  const [project, setProject] = useState('');
+
   return (
     <div className='container py-12 space-y-8'>
       <div className='space-y-6 text-center header'>
@@ -14,9 +21,11 @@ export default function HomePage() {
         </div>
       </div>
       <div>
-        <Terminal />
+        <Terminal setProject={setProject} setContent={setContent} />
       </div>
-      <div>Contents</div>
+      <div>{content === 'about' && <About />}</div>
+      <div>{content === 'contact' && <Contact />}</div>
+      <div>{project !== '' && <Project project={project} />}</div>
     </div>
   );
 }
