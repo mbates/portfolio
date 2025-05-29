@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Spinner from './Spinner';
 
 interface ContactProps {
   message: string;
@@ -7,9 +8,11 @@ interface ContactProps {
 
 const Contact: React.FC<ContactProps> = ({ message, setMessage }) => {
   const [subject, setSubject] = useState('Message from bates-solutions.com');
+  const [sending, setSending] = useState(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSending(true);
     console.log('subject : ', subject, 'message : ', message);
   };
 
@@ -50,10 +53,11 @@ const Contact: React.FC<ContactProps> = ({ message, setMessage }) => {
 
         <div className='mb-4'>
           <button
-            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+            className='bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded cursor-pointer flex'
             type='submit'
           >
-            Send
+            {sending && <Spinner />}
+            <span>Send</span>
           </button>
         </div>
       </form>
