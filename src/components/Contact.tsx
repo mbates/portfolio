@@ -1,8 +1,11 @@
-const Contact: React.FC = () => {
+interface ContactProps {
+  message: string;
+}
+
+const Contact: React.FC<ContactProps> = ({ message }) => {
   return (
     <div className='w-f h-80'>
-      <h2>Contact</h2>
-      <div>Form</div>
+      <div>M: {message}</div>
     </div>
   );
 };

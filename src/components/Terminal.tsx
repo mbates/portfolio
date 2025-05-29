@@ -4,11 +4,13 @@ import { projects } from './Project';
 interface TerminalProps {
   setContent: (content: string) => void;
   setProject: (project: string) => void;
+  setMessage: (message: string) => void;
 }
 
 const Terminal: React.FC<TerminalProps> = ({
   setContent,
   setProject,
+  setMessage,
 }: TerminalProps) => {
   const welcomeMessage = (
     <div>
@@ -31,14 +33,12 @@ const Terminal: React.FC<TerminalProps> = ({
     about: () => {
       setContent('about');
       setProject('');
-    },
-    contact: () => {
-      setContent('contact');
-      setProject('');
+      setMessage('');
     },
     send: (message: string) => {
       setContent('contact');
       setProject('');
+      setMessage(message);
       console.log('sending: ', message);
     },
     ls: <div>{projectList}</div>,
@@ -46,6 +46,7 @@ const Terminal: React.FC<TerminalProps> = ({
       if (projects.includes(project)) {
         setContent('project');
         setProject(project);
+        setMessage('');
       } else {
         return `The project "${project}" doesn't exist`;
       }
@@ -55,19 +56,18 @@ const Terminal: React.FC<TerminalProps> = ({
         <span className='text-yellow-200'>help </span>
         show all commands
         <br />
-        <span className='text-yellow-200'>clear </span>
-        clears the console
-        <br />
+        <span className='text-yellow-200'>ls </span>
+        list the projects we've worked on <br />
+        <span className='text-yellow-200'>show [project] </span>
+        show project details <br />
         <span className='text-yellow-200'>about </span>
-        what we're all about?
+        who are we and what services do we offer
         <br />
         {/* <span className='text-yellow-200'>send [message] </span>
         send us a message
         <br /> */}
-        <span className='text-yellow-200'>ls </span>
-        list the projects we've worked on <br />
-        <span className='text-yellow-200'>show [project] </span>
-        show project details
+        <span className='text-yellow-200'>clear </span>
+        clears the console
         <br />
       </div>
     ),
