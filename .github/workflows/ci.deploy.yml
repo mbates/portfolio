@@ -42,12 +42,13 @@ jobs:
           export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
           export AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID
           export AWS_REGION=$AWS_REGION
-          aws s3 rm s3://bates-portfolio-s3 --recursive
-          aws s3 cp ./dist/ s3://bates-portfolio-s3 --recursive
+          aws s3 rm $AWS_BUCKET --recursive
+          aws s3 cp ./dist/ $AWS_BUCKET --recursive
           aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
     env:
       AWS_ACCESS_KEY: ${{ vars.AWS_ACCESS_KEY }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_ACCOUNT_ID: ${{vars.AWS_ACCOUNT_ID }}
       AWS_REGION: ${{vars.AWS_REGION }}
+      AWS_BUCKET: ${{vars.AWS_BUCKET }}
       DISTRIBUTION_ID: ${{vars.distribution_id}}
