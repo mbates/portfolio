@@ -3,11 +3,9 @@ name: BatesPortfolio
 on:
   push:
     branches:
-      - main
       - develop
   pull_request:
     branches:
-      - main
       - develop
       - 'feat/*'
 
@@ -44,10 +42,9 @@ jobs:
           export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
           export AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID
           export AWS_REGION=$AWS_REGION
-            aws s3 rm s3://bates-portfolio-s3 --recursive
-            aws s3 cp ./dist/ s3://bates-portfolio-s3 --recursive
-            aws cloudfront create-invalidation --distribution-id E229ACJX46CML2 --paths "/*"
-
+          aws s3 rm s3://bates-portfolio-s3 --recursive
+          aws s3 cp ./dist/ s3://bates-portfolio-s3 --recursive
+          aws cloudfront create-invalidation --distribution-id E229ACJX46CML2 --paths "/*"
     env:
       AWS_ACCESS_KEY: AKIA2EX4DFQBKIPKEVWU
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
