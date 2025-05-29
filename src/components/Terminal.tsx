@@ -39,7 +39,6 @@ const Terminal: React.FC<TerminalProps> = ({
       setContent('contact');
       setProject('');
       setMessage(message);
-      console.log('sending: ', message);
     },
     ls: <div>{projectList}</div>,
     show: (project: string) => {
@@ -59,9 +58,9 @@ const Terminal: React.FC<TerminalProps> = ({
         <span className='text-yellow-200'>ls </span>
         list the projects we've worked on <br />
         <span className='text-yellow-200'>show [project] </span>
-        show project details <br />
+        project details <br />
         <span className='text-yellow-200'>about </span>
-        who are we and what services do we offer
+        about us and our services
         <br />
         {/* <span className='text-yellow-200'>send [message] </span>
         send us a message

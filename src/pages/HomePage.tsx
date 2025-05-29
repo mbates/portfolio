@@ -29,7 +29,11 @@ export default function HomePage() {
         />
       </div>
       <div>{content === 'about' && <About />}</div>
-      <div>{content === 'contact' && <Contact message={message} />}</div>
+      <div>
+        {content === 'contact' && (
+          <Contact message={message} setMessage={setMessage} />
+        )}
+      </div>
       <div>{project !== '' && <Project project={project} />}</div>
     </div>
   );
