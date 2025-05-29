@@ -62,9 +62,9 @@ const Terminal: React.FC<TerminalProps> = ({
         <span className='text-yellow-200'>about </span>
         about us and our services
         <br />
-        {/* <span className='text-yellow-200'>send [message] </span>
+        <span className='text-yellow-200'>send [message to send] </span>
         send us a message
-        <br /> */}
+        <br />
         <span className='text-yellow-200'>clear </span>
         clears the console
         <br />
