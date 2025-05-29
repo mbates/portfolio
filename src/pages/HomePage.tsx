@@ -12,11 +12,11 @@ export default function HomePage() {
   const [message, setMessage] = useState('');
 
   return (
-    <div className='container py-12 space-y-8'>
-      <div className='space-y-6 text-center header'>
+    <div className='container py-12 space-y-8 max-w-290'>
+      <div className='header'>
         <Logo />
         <div className='grid grid-rows'>
-          <h1 className='text-6xl justify-center text-purple-600'>
+          <h1 className='text-8xl justify-self-start text-purple-600'>
             Bates Solutions
           </h1>
         </div>
