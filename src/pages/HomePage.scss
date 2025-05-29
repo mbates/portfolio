@@ -2,4 +2,13 @@
   display: grid;
   grid-template-columns: min-content 1fr;
   align-items: center;
+
+  h1 {
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 10.7rem;
+    transform: translateY(-0.2rem);
+    margin-top: 0;
+  }
 }

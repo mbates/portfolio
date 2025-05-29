@@ -16,7 +16,7 @@ export default function HomePage() {
       <div className='space-y-6 text-center header'>
         <Logo />
         <div className='grid grid-rows'>
-          <h1 className='text-6xl justify-center text-purple-600'>
+          <h1 className='text-8xl justify-self-start text-purple-600'>
             Bates Solutions
           </h1>
         </div>
