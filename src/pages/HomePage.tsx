@@ -9,6 +9,7 @@ import Contact from '../components/Contact';
 export default function HomePage() {
   const [content, setContent] = useState('');
   const [project, setProject] = useState('');
+  const [message, setMessage] = useState('');
 
   return (
     <div className='container py-12 space-y-8'>
@@ -21,10 +22,18 @@ export default function HomePage() {
         </div>
       </div>
       <div>
-        <Terminal setProject={setProject} setContent={setContent} />
+        <Terminal
+          setProject={setProject}
+          setContent={setContent}
+          setMessage={setMessage}
+        />
       </div>
       <div>{content === 'about' && <About />}</div>
-      <div>{content === 'contact' && <Contact />}</div>
+      <div>
+        {content === 'contact' && (
+          <Contact message={message} setMessage={setMessage} />
+        )}
+      </div>
       <div>{project !== '' && <Project project={project} />}</div>
     </div>
   );
