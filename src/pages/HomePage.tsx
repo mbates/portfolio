@@ -12,7 +12,7 @@ export default function HomePage() {
   const [message, setMessage] = useState('');
 
   return (
-    <div className='container py-12 space-y-8 max-w-290'>
+    <div className='container py-12 space-y-8 max-w-280'>
       <div className='header'>
         <Logo />
         <div className='grid grid-rows'>
