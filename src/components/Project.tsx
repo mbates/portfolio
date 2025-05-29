@@ -1,4 +1,3 @@
-import { FunctionComponent } from 'react';
 import Casechek from '../projects/Casechek';
 import OpsKwan from '../projects/OpsKwan';
 import Mickles from '../projects/Mickles';
