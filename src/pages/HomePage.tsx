@@ -35,7 +35,7 @@ export default function HomePage() {
   }, [project, content]);
 
   return (
-    <div className='container py-12 space-y-8 max-w-290'>
+    <div className='container py-12 space-y-8 max-w-280'>
       <div className='header'>
         <div className='flex flex-row'>
           <Logo />
