@@ -5,14 +5,29 @@ import Logo from '../components/Logo';
 
 const Bates: React.FC = () => {
   return (
-    <div className='w-f h-full'>
+    <div className='w-f'>
       <p className='my-5'>
-        <div className='float-right'>
+        <div className='float-right ml-4 mt-1'>
           <Logo />
         </div>
       </p>
       {/* <h2 className='text-5xl font-semibold tracking-tight'>Zeepler</h2>
       <div>description</div> */}
+
+      <h2 className='text-3xl font-semibold tracking-tight'>Portfolio</h2>
+      <p className='my-5'>
+        This website has been built with react react-terminal and tailwindcss.
+        It is deployed using Github Actions to AWS S3 & Cloudfront.
+        <br />
+        <Link
+          target='_blank'
+          to='https://github.com/mbates/portfolio'
+          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2  bg-purple-100'
+        >
+          <img src={GithubLogo} className='w-6 mr-1' />
+          https://github.com/mbates/portfolio
+        </Link>
+      </p>
 
       <h2 className='text-3xl font-semibold tracking-tight'>Microservices</h2>
       <p className='my-5'>
@@ -27,7 +42,7 @@ const Bates: React.FC = () => {
         <Link
           target='_blank'
           to='https://github.com/mbates/bates-solutions-example'
-          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2'
+          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
         >
           <img src={GithubLogo} className='w-6 mr-1' />
           https://github.com/mbates/bates-solutions-example
@@ -40,7 +55,7 @@ const Bates: React.FC = () => {
         <Link
           target='_blank'
           to=' https://github.com/mbates/bates-solutions-example-common'
-          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2'
+          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2  bg-purple-100'
         >
           <img src={GithubLogo} className='w-6 mr-1' />
           https://github.com/mbates/bates-solutions-example-common
@@ -50,27 +65,13 @@ const Bates: React.FC = () => {
         <Link
           target='_blank'
           to=' https://github.com/mbates/bates-solutions-common'
-          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2'
+          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2  bg-purple-100'
         >
           <img src={GithubLogo} className='w-6 mr-1' />
           https://github.com/mbates/bates-solutions-common
         </Link>
       </p>
 
-      <h2 className='text-3xl font-semibold tracking-tight'>Portfolio</h2>
-      <p className='my-5'>
-        This website has been built with react react-terminal and tailwindcss.
-        It is deployed using Github Actions to AWS S3 & Cloudfront.
-        <br />
-        <Link
-          target='_blank'
-          to='https://github.com/mbates/portfolio'
-          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2'
-        >
-          <img src={GithubLogo} className='w-6 mr-1' />
-          https://github.com/mbates/portfolio
-        </Link>
-      </p>
       <br />
     </div>
   );
