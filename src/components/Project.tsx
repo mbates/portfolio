@@ -11,7 +11,7 @@ export const projects = ['bates', 'casechek', 'mickles', 'opskwan'];
 
 const Project: React.FC<ProjectProps> = ({ project }) => {
   return (
-    <div className='w-f h-80'>
+    <div className='w-f h-full'>
       {project === 'casechek' && <Casechek />}
       {project === 'opskwan' && <OpsKwan />}
       {project === 'mickles' && <Mickles />}
