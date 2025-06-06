@@ -59,7 +59,7 @@ export default function HomePage() {
         className='rounded-lg w-full h-200 max-w-240 mt-10 justify-self-center shadow-lg backdrop:bg-black/50 backdrop:backdrop-blur-sm'
       >
         <div>
-          <div className='w-full h-auto rounded-t-lg bg-gray-200 flex justify-start items-center space-x-1.5 px-3'>
+          <div className='w-full rounded-t-lg bg-gray-200 flex justify-start items-center space-x-1.5 px-3'>
             <span
               className='w-3 h-3 rounded-full bg-red-400 cursor-pointer'
               onClick={clearProject}

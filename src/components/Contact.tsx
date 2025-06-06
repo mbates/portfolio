@@ -14,6 +14,7 @@ const Contact: React.FC<ContactProps> = ({ message, setMessage }) => {
     event.preventDefault();
     setSending(true);
     console.log('subject : ', subject, 'message : ', message);
+    setSending(false);
   };
 
   return (
