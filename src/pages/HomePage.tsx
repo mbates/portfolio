@@ -35,7 +35,7 @@ export default function HomePage() {
   }, [project, content]);
 
   return (
-    <div className='py-12 space-y-8 max-w-300'>
+    <div className='py-12 space-y-8'>
       <div className='header'>
         <div className='flex flex-row'>
           <Logo />
@@ -44,17 +44,19 @@ export default function HomePage() {
           </h1>
         </div>
       </div>
-      <div>
-        <Terminal
-          key={focus}
-          setProject={setProject}
-          setContent={setContent}
-          setMessage={setMessage}
-        />
+      <div className='terminal'>
+        <section>
+          <Terminal
+            key={focus}
+            setProject={setProject}
+            setContent={setContent}
+            setMessage={setMessage}
+          />
+        </section>
       </div>
       <dialog
         ref={projectDialogRef}
-        className='rounded-lg w-full max-w-300 mt-4 justify-self-center shadow-lg backdrop:bg-black/50 backdrop:backdrop-blur-sm'
+        className='rounded-lg w-full mt-4 justify-self-center shadow-lg backdrop:bg-black/50 backdrop:backdrop-blur-sm'
       >
         <div>
           <div className='w-full h-11 rounded-t-lg bg-gray-200 flex justify-start items-center space-x-1.5 px-3'>

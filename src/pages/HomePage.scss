@@ -18,6 +18,52 @@
   }
 }
 
+.terminal {
+  display: grid;
+  background-image: url('/src/assets/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 636px;
+  position: relative;
+
+  @media (width >= 80rem) {
+    height: 736px;
+
+    @media (width >= 96rem) {
+      height: 959px;
+    }
+  }
+
+  section {
+    position: absolute;
+    left: 0;
+    top: 170px;
+    width: 764px;
+    height: 279px;
+
+    @media (width >= 64rem) {
+      top: 169px;
+      left: 16px;
+      width: 990px;
+      height: 280px;
+    }
+
+    @media (width >= 80rem) {
+      top: 182px;
+      width: 1239px;
+      height: 350px;
+    }
+
+    @media (width >= 96rem) {
+      top: 255px;
+      width: 1488px;
+      height: 422px;
+      left: 21px;
+    }
+  }
+}
+
 .capitalize:first-letter {
   text-transform: uppercase;
 }
