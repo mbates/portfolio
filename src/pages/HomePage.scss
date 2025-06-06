@@ -1,8 +1,4 @@
 .header {
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  align-items: center;
-
   h1 {
     font-family: 'PT Sans Narrow', sans-serif;
     font-weight: 400;
@@ -39,8 +35,15 @@
     position: absolute;
     left: 0;
     top: 170px;
-    width: 764px;
+    width: 100%;
     height: 279px;
+
+    @media (width >= 40rem) {
+      top: 170px;
+      left: 0;
+      width: 765px;
+      height: 279px;
+    }
 
     @media (width >= 64rem) {
       top: 169px;
