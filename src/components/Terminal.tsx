@@ -83,17 +83,15 @@ const Terminal: React.FC<TerminalProps> = ({
   };
 
   return (
-    <div className='w-f h-80'>
-      <ReactTerminal
-        welcomeMessage={welcomeMessage}
-        showControlBar={false}
-        commands={commands}
-        themes={theme}
-        theme='bates-solutions'
-        defaultHandler={defaultHandler}
-        prompt={prompt}
-      />
-    </div>
+    <ReactTerminal
+      welcomeMessage={welcomeMessage}
+      showControlBar={false}
+      commands={commands}
+      themes={theme}
+      theme='bates-solutions'
+      defaultHandler={defaultHandler}
+      prompt={prompt}
+    />
   );
 };
 
