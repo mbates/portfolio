@@ -22,15 +22,12 @@ export default function HomePage() {
     setContent('');
     setMessage('');
   };
-  const projectDialogRef = useRef<HTMLDialogElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   useEffect(() => {
-    if (projectDialogRef.current?.open && project === '' && content === '') {
-      projectDialogRef.current?.close();
-    } else if (
-      !projectDialogRef.current?.open &&
-      (project !== '' || content !== '')
-    ) {
-      projectDialogRef.current?.showModal();
+    if (dialogRef.current?.open && project === '' && content === '') {
+      dialogRef.current?.close();
+    } else if (!dialogRef.current?.open && (project !== '' || content !== '')) {
+      dialogRef.current?.showModal();
     }
   }, [project, content]);
 
@@ -55,7 +52,7 @@ export default function HomePage() {
         </section>
       </div>
       <dialog
-        ref={projectDialogRef}
+        ref={dialogRef}
         className='rounded-lg w-full h-200 max-w-240 mt-10 justify-self-center shadow-lg backdrop:bg-black/50 backdrop:backdrop-blur-sm'
       >
         <div>
@@ -129,7 +126,7 @@ export default function HomePage() {
               </div>
             )}
           </div>
-          <div className='bg-white border-t-0 w-full overflow-y-scroll px-4 scroll-thin'>
+          <div className='bg-white h-190 border-t-0 w-full overflow-y-scroll px-4 scroll-thin'>
             {project !== '' && <Project project={project} />}
             {content === 'about' && <About />}
             {content === 'contact' && (
