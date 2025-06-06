@@ -2,7 +2,7 @@ import Logo from '../assets/opskwan-logo.png';
 
 const OpsKwan: React.FC = () => {
   return (
-    <div className='w-f h-80'>
+    <div className='w-f h-full'>
       <img src={Logo} className='float-right' />
       <p className='my-5'>
         OpsKwan was founded by a Medical Device distributorship with a dual

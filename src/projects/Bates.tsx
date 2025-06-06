@@ -5,7 +5,7 @@ import Logo from '../components/Logo';
 
 const Bates: React.FC = () => {
   return (
-    <div className='w-f h-80'>
+    <div className='w-f h-full'>
       <p className='my-5'>
         <div className='float-right'>
           <Logo />

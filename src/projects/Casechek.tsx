@@ -3,7 +3,7 @@ import Logo from '../assets/casechek-logo.png';
 
 const Casechek: React.FC = () => {
   return (
-    <div className='w-f h-80'>
+    <div className='w-f h-full'>
       <Link
         to='https://casechek.com'
         className='float-right w-100'
