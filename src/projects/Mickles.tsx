@@ -3,7 +3,7 @@ import Logo from '../assets/mickles-logo.png';
 
 const Mickles: React.FC = () => {
   return (
-    <div className='w-f h-80'>
+    <div className='w-f h-full'>
       <Link
         to='https://mandismickles.com'
         className='float-right w-40'

@@ -38,9 +38,9 @@ export default function HomePage() {
     <div className='py-12 space-y-8'>
       <div className='terminal'>
         <div className='header'>
-          <div className='flex flex-row'>
+          <div className='flex flex-row ml-4 -translate-y-2'>
             <Logo />
-            <h1 className='text-8xl justify-self-start text-purple-600 flex flex-col'>
+            <h1 className='text-8xl justify-self-start text-purple-600 flex flex-col translate-y-1'>
               Bates <span>Solutions</span>
             </h1>
           </div>
@@ -56,10 +56,10 @@ export default function HomePage() {
       </div>
       <dialog
         ref={projectDialogRef}
-        className='rounded-lg w-full mt-4 justify-self-center shadow-lg backdrop:bg-black/50 backdrop:backdrop-blur-sm'
+        className='rounded-lg w-full h-200 max-w-240 mt-10 justify-self-center shadow-lg backdrop:bg-black/50 backdrop:backdrop-blur-sm'
       >
         <div>
-          <div className='w-full h-11 rounded-t-lg bg-gray-200 flex justify-start items-center space-x-1.5 px-3'>
+          <div className='w-full rounded-t-lg bg-gray-200 flex justify-start items-center space-x-1.5 px-3'>
             <span
               className='w-3 h-3 rounded-full bg-red-400 cursor-pointer'
               onClick={clearProject}
@@ -129,7 +129,7 @@ export default function HomePage() {
               </div>
             )}
           </div>
-          <div className='bg-white border-t-0 w-full h-140 overflow-y-scroll px-4 scroll-thin'>
+          <div className='bg-white border-t-0 w-full overflow-y-scroll px-4 scroll-thin'>
             {project !== '' && <Project project={project} />}
             {content === 'about' && <About />}
             {content === 'contact' && (

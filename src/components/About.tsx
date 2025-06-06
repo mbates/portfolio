@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
   return (
-    <div className='w-f h-80'>
+    <div className='w-f h-full'>
       <p className='my-5'>
         At Bates Solutions, we are a forward-thinking software development
         company dedicated to building innovative, scalable, and high-performing
