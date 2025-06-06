@@ -38,9 +38,9 @@ export default function HomePage() {
     <div className='py-12 space-y-8'>
       <div className='terminal'>
         <div className='header'>
-          <div className='flex flex-row'>
+          <div className='flex flex-row ml-4 -translate-y-2'>
             <Logo />
-            <h1 className='text-8xl justify-self-start text-purple-600 flex flex-col'>
+            <h1 className='text-8xl justify-self-start text-purple-600 flex flex-col translate-y-1'>
               Bates <span>Solutions</span>
             </h1>
           </div>

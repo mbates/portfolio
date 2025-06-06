@@ -41,8 +41,12 @@
     @media (width >= 40rem) {
       top: 170px;
       left: 0;
-      width: 765px;
+      width: 638px;
       height: 279px;
+    }
+
+    @media (width >= 48rem) {
+      width: 765px;
     }
 
     @media (width >= 64rem) {
