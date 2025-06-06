@@ -36,15 +36,15 @@ export default function HomePage() {
 
   return (
     <div className='py-12 space-y-8'>
-      <div className='header'>
-        <div className='flex flex-row'>
-          <Logo />
-          <h1 className='text-8xl justify-self-start text-purple-600 flex flex-col'>
-            Bates <span>Solutions</span>
-          </h1>
-        </div>
-      </div>
       <div className='terminal'>
+        <div className='header'>
+          <div className='flex flex-row'>
+            <Logo />
+            <h1 className='text-8xl justify-self-start text-purple-600 flex flex-col'>
+              Bates <span>Solutions</span>
+            </h1>
+          </div>
+        </div>
         <section>
           <Terminal
             key={focus}
