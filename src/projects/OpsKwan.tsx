@@ -1,9 +1,9 @@
+import Logo from '../assets/opskwan-logo.png';
+
 const OpsKwan: React.FC = () => {
   return (
     <div className='w-f h-80'>
-      <h2 className='text-5xl font-semibold tracking-tight'>
-        OpsKwan Technologies Inc.
-      </h2>
+      <img src={Logo} className='float-right' />
       <p className='my-5'>
         OpsKwan was founded by a Medical Device distributorship with a dual
         goal: design and develop a modular solution to solve logistical problems
@@ -25,17 +25,17 @@ const OpsKwan: React.FC = () => {
         Services Provided
       </h2>
       <p className='my-5'>
-        Architected, deployed and iteratively built backend and frontend
-        systems.
+        Bates Solutions architected, deployed and iteratively built the OpsKwan
+        backend and frontend systems.
       </p>
       <p className='my-5'>
-        We also worked directly with OpsKwans' customers delivering specific
+        We also worked directly with their customers, delivering specific
         solutions within the OpsKwan system.
       </p>
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
         Technologies
       </h2>
-      <ul className='list-disc'>
+      <ul className='list-disc pl-8'>
         <li>CakePHP</li>
         <li>Javascript, jQuery</li>
         <li>

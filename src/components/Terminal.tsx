@@ -71,7 +71,6 @@ const Terminal: React.FC<TerminalProps> = ({
       </div>
     ),
   };
-
   const theme = {
     'bates-solutions': {
       themeBGColor: '#012456',
@@ -79,7 +78,6 @@ const Terminal: React.FC<TerminalProps> = ({
       themePromptColor: '#ffffff',
     },
   };
-
   const defaultHandler = (input: string) => {
     return `I don't know the "${input}" command`;
   };

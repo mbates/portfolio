@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
+import Logo from '../assets/casechek-logo.png';
 
 const Casechek: React.FC = () => {
   return (
     <div className='w-f h-80'>
-      <h2 className='text-5xl font-semibold tracking-tight'>Casechek</h2>
-      <Link to='https://casechek.com' className='text-blue-500'>
-        https://casechek.com
+      <Link
+        to='https://casechek.com'
+        className='float-right w-100'
+        target='_blank'
+      >
+        <img src={Logo} />
       </Link>
       <p className='my-5'>
         Casechek was founded to solve problems hospitals experience when
@@ -30,20 +34,20 @@ const Casechek: React.FC = () => {
         Services Provided
       </h2>
       <p className='my-5'>
-        Architected, built and deployed numerous highly available, secure,
-        resilient backend systems, and numerous easy to use web, mobile and
-        desktop applications.
+        We helped Casechek to architect, build and deploy numerous highly
+        available, secure, resilient backend systems, and numerous easy to use
+        web, mobile and desktop applications.
       </p>
 
       <p className='my-5'>
-        Implemented CI to deploy the applications to AWS, iTunes and Play
-        stores. Utilizing tools like Github Actions, CDK and Terraform.
+        We also implemented CI for Caseche, deploying their applications to AWS,
+        iTunes and Play stores
       </p>
 
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
         Technologies
       </h2>
-      <ul className='list-disc'>
+      <ul className='list-disc pl-8'>
         <li>
           Symfony, Doctrine, API-Platform, NestJS, TypeORM, Jest, PHPUnit,
           Behat, Docker, Guzzle, Oauth, Auth0, Bash Scripts

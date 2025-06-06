@@ -20,8 +20,9 @@ const Contact: React.FC<ContactProps> = ({ message, setMessage }) => {
     <div className='px-8'>
       <form className='bg-white' onSubmit={handleSubmit}>
         <div className='mb-4'>
+          <br />
           <label
-            className='block text-gray-700 text-sm font-bold mb-2'
+            className='block text-gray-700 text-md font-bold mb-2'
             htmlFor='subject'
           >
             Subject
@@ -37,7 +38,7 @@ const Contact: React.FC<ContactProps> = ({ message, setMessage }) => {
 
         <div className='mb-4'>
           <label
-            className='block text-gray-700 text-sm font-bold mb-2'
+            className='block text-gray-700 text-md font-bold mb-2'
             htmlFor='message'
           >
             Message
