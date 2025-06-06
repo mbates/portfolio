@@ -7,7 +7,11 @@
     "start": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:gateway": "serverless --aws-profile=bates --config ./src/serverless/gateway.yml deploy",
+    "remove:gateway": "serverless --aws-profile=bates --config ./src/serverless/gateway.yml remove",
+    "deploy:lambda": "serverless --aws-profile=bates --config ./src/serverless/lambda.yml deploy",
+    "remove:lambda": "serverless --aws-profile=bates --config ./src/serverless/lambda.yml remove"
   },
   "dependencies": {
     "@tailwindcss/vite": "4.1.4",

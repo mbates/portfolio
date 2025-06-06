@@ -1,0 +1,25 @@
+service: bates-portfolio
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: us-east-1
+  stackName: port
+resources:
+  Resources:
+    BSPortfolioGW:
+      Type: AWS::ApiGateway::RestApi
+      Properties:
+        Name: BSPortfolioGW
+  Outputs:
+    apiGatewayRestApiId:
+      Value:
+        Ref: BSPortfolioGW
+      Export:
+        Name: BSPortfolioGW-restApiId
+    apiGatewayRestApiRootResourceId:
+      Value:
+        Fn::GetAtt:
+          - BSPortfolioGW
+          - RootResourceId
+      Export:
+        Name: BSPortfolioGW-rootResourceId
