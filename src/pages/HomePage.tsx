@@ -8,7 +8,7 @@ import Contact from '../components/Contact';
 import CasechekLogo from '../assets/casechek-logo-small.png';
 import OpsKwanLogo from '../assets/opskwan-logo-small.png';
 import BatesLogo from '../assets/favicon.ico';
-import MicklesLogo from '../assets/mickles-logo.png';
+import MandisMicklesLogo from '../assets/mandis-mickles-logo.png';
 
 export default function HomePage() {
   const [content, setContent] = useState('');
@@ -77,7 +77,7 @@ export default function HomePage() {
             )}
             {project === 'mickles' && (
               <div className='flex flex-row pt-1 pb-1 pl-3 pr-3 mt-1 ml-2 bg-stone-50 border-white border-l-1 border-t-1 border-r-1 rounded-tl-lg rounded-tr-lg'>
-                <img src={MicklesLogo} className='w-4 h-4 mt-1 mr-1' />{' '}
+                <img src={MandisMicklesLogo} className='w-4 h-4 mt-1 mr-1' />{' '}
                 <span>Mandis Mickles</span>
               </div>
             )}

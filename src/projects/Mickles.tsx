@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
-import Logo from '../assets/mickles-logo.png';
+import MandisMicklesLogo from '../assets/mandis-mickles-logo.png';
+import MicklesKithcenLogo from '../assets/mickles-kitchen-logo.png';
+import LotusLogo from '../assets/lotus-logo.png';
 
 const Mickles: React.FC = () => {
   return (
@@ -9,7 +11,7 @@ const Mickles: React.FC = () => {
         className='float-right w-40'
         target='_blank'
       >
-        <img src={Logo} />
+        <img src={MandisMicklesLogo} />
       </Link>
       <p className='my-5'>
         Mickles Canning is a startup business in the food industry. The founders
@@ -23,7 +25,11 @@ const Mickles: React.FC = () => {
       <p className='my-5'>
         Bates Solutions architected and built a custom e-commerce website,
         integrated with Mickles' payment provider{' '}
-        <Link to='https://squareup.com/us/en' className='text-blue-500'>
+        <Link
+          to='https://squareup.com/us/en'
+          target='_blank'
+          className='text-blue-500'
+        >
           squareup.com
         </Link>
         . We designed the UI and UX to match the branding and brand language
@@ -33,6 +39,26 @@ const Mickles: React.FC = () => {
         We also supported them through their incorporation process, helped build
         technical documentation to meet regulatory requirements, and managed
         their online technical business accounts.
+      </p>
+      <p className='my-5'>
+        Mandis Mickles have 2 other websites that were also built, deployed and
+        managed by Bates Solutions.{' '}
+        <Link
+          to='https://mickleskitchen.com'
+          target='_blank'
+          className='text-blue-500 flex items-center'
+        >
+          <img src={MicklesKithcenLogo} className='w-6 h-6 mt-1 mr-1' />
+          mickleskitchen.com
+        </Link>
+        <Link
+          to='https://lotusbodywork.ca'
+          target='_blank'
+          className='text-blue-500 flex items-center'
+        >
+          <img src={LotusLogo} className='w-6 h-6 mt-1 mr-1' />
+          lotusbodywork.ca
+        </Link>
       </p>
 
       <h2 className='text-3xl font-semibold tracking-tight my-5'>

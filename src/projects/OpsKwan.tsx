@@ -11,9 +11,9 @@ const OpsKwan: React.FC = () => {
         solution to other Medical Device companies.
       </p>
       <p className='my-5'>
-        Bates Solutions started working with OpsKwan once a prrof of concept
-        application had been developed. We were tasked with rebuilding the
-        prototype into a secure and reliable SaaS, tenanted application.
+        Bates Solutions started working with OpsKwan to take the ideas from
+        their proof of concept and a secure and reliable SaaS, tenanted
+        application.
       </p>
       <p className='my-5'>
         OpsKwan was deployed across Canada with ZimmerBiomet in 2011. It was one
@@ -29,8 +29,8 @@ const OpsKwan: React.FC = () => {
         backend and frontend systems.
       </p>
       <p className='my-5'>
-        We also worked directly with their customers, delivering specific
-        solutions within the OpsKwan system.
+        We worked directly with OpsKwans' customers, delivering bespoke
+        solutions for them within the OpsKwan system.
       </p>
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
         Technologies
