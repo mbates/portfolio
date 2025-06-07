@@ -17,7 +17,7 @@ const Casechek: React.FC = () => {
           className='text-blue-400'
           target='_blank'
         >
-          Casechek
+          Casechek Inc.
         </Link>{' '}
         was founded to solve problems hospitals experience when procuring
         medical devices for surgical procedures. They were the first to market
@@ -45,10 +45,9 @@ const Casechek: React.FC = () => {
         available, secure, resilient backend systems, and numerous easy to use
         web, mobile and desktop applications.
       </p>
-
       <p className='my-5'>
-        We also implemented CI for Caseche, deploying their applications to AWS,
-        iTunes and Play stores
+        We also implemented Continousous Integration, deploying their
+        applications to AWS, iTunes and Play stores
       </p>
 
       <h2 className='text-3xl font-semibold tracking-tight my-5'>

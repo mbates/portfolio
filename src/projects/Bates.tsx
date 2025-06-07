@@ -16,8 +16,19 @@ const Bates: React.FC = () => {
 
       <h2 className='text-3xl font-semibold tracking-tight'>Portfolio</h2>
       <p className='my-5'>
-        This website has been built with react react-terminal and tailwindcss.
-        It is deployed using Github Actions to AWS S3 & Cloudfront.
+        This website is in a public github repository, it has been built with
+        react, react-terminal, axios and tailwindcss. It is deployed using
+        Github Actions to AWS S3 & Cloudfront. The contact page sends an email
+        using AWS, and is deployed with{' '}
+        <Link
+          target='_blank'
+          to='https://www.serverless.com'
+          className='text-blue-500'
+        >
+          Serverless
+        </Link>
+        , using API Gateway, Lambda and SES.
+        <br />
         <br />
         <Link
           target='_blank'
@@ -34,10 +45,9 @@ const Bates: React.FC = () => {
         Simple microservices application built with Kubernetes, TypeScript,
         Express, Nats and Mongo. This project demonstrates how to structure a
         microservice application, it has an auth service and an example service
-        that publishes & subscribes to a nats service.
+        that publishes & subscribes to a nats service. Jest tests are also
+        included.
         <br />
-        <br />
-        Microservices Example
         <br />
         <Link
           target='_blank'
