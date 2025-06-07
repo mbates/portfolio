@@ -3,7 +3,7 @@ provider:
   name: aws
   runtime: nodejs22.x
   region: us-east-1
-  stackName: port
+  stackName: bates-portfolio
 resources:
   Resources:
     BSPortfolioGW:
