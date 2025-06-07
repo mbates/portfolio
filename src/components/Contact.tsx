@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import Spinner from './Spinner';
 
 interface ContactProps {
@@ -7,14 +8,28 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({ message, setMessage }) => {
-  const [subject, setSubject] = useState('Message from bates-solutions.com');
+  const [contact, setContact] = useState('');
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSending(true);
-    console.log('subject : ', subject, 'message : ', message);
-    setSending(false);
+    if (contact === '' || message === '') {
+      setError(true);
+    } else {
+      setError(false);
+      setSending(true);
+      await axios.post(
+        'https://427im0p45b.execute-api.us-east-1.amazonaws.com/api/portfolio-message',
+        {
+          contact,
+          message,
+        }
+      );
+      setContact('');
+      setMessage('');
+      setSending(false);
+    }
   };
 
   return (
@@ -24,16 +39,16 @@ const Contact: React.FC<ContactProps> = ({ message, setMessage }) => {
           <br />
           <label
             className='block text-gray-700 text-md font-bold mb-2'
-            htmlFor='subject'
+            htmlFor='contact'
           >
-            Subject
+            Contact (email / phone)
           </label>
           <input
             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight'
-            id='subject'
+            id='contact'
             type='text'
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
           />
         </div>
 
@@ -61,6 +76,11 @@ const Contact: React.FC<ContactProps> = ({ message, setMessage }) => {
             {sending && <Spinner />}
             <span>Send</span>
           </button>
+          {error && (
+            <div className='block text-red-700 text-md font-bold mb-2'>
+              Please enter contact info and a message to send
+            </div>
+          )}
         </div>
       </form>
     </div>

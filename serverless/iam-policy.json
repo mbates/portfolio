@@ -1,0 +1,95 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CloudformationGateway",
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:DescribeStackResource",
+        "cloudformation:DescribeStacks",
+        "cloudformation:CreateStack",
+        "cloudformation:DescribeStackEvents",
+        "cloudformation:UpdateStack",
+        "cloudformation:ListStackResources"
+      ],
+      "Resource": ["arn"]
+    },
+    {
+      "Sid": "CloudformationTemplate",
+      "Effect": "Allow",
+      "Action": ["cloudformation:ValidateTemplate"],
+      "Resource": ["*"]
+    },
+    {
+      "Sid": "CloudformationLambda",
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:DescribeStackResource",
+        "cloudformation:DescribeStacks",
+        "cloudformation:CreateStack",
+        "cloudformation:DescribeStackEvents",
+        "cloudformation:UpdateStack",
+        "cloudformation:ListStackResources"
+      ],
+      "Resource": ["arn"]
+    },
+    {
+      "Sid": "SSM",
+      "Effect": "Allow",
+      "Action": ["ssm:GetParameter"],
+      "Resource": ["arn"]
+    },
+    {
+      "Sid": "S3",
+      "Effect": "Allow",
+      "Action": [
+        "s3:CreateBucket",
+        "s3:PutBucketVersioning",
+        "s3:GetBucketLocation",
+        "s3:ListBucket",
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:ListBucketVersions"
+      ],
+      "Resource": ["arn"]
+    },
+    {
+      "Sid": "ApiGatesway",
+      "Effect": "Allow",
+      "Action": ["apigateway:PUT", "apigateway:POST", "apigateway:GET"],
+      "Resource": ["arn"]
+    },
+    {
+      "Sid": "IAM",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetRole",
+        "iam:CreateRole",
+        "iam:TagRole",
+        "iam:PutRolePolicy",
+        "iam:PassRole"
+      ],
+      "Resource": ["arn*"]
+    },
+    {
+      "Sid": "Logs",
+      "Effect": "Allow",
+      "Action": ["logs:CreateLogGroup", "logs:TagResource"],
+      "Resource": ["arn"]
+    },
+    {
+      "Sid": "Lambda",
+      "Effect": "Allow",
+      "Action": [
+        "lambda:GetFunction",
+        "lambda:CreateFunction",
+        "lambda:TagResource",
+        "lambda:ListVersionsByFunction",
+        "lambda:PublishVersion",
+        "lambda:UpdateFunctionCode",
+        "lambda:AddPermission"
+      ],
+      "Resource": ["arn"]
+    }
+  ]
+}

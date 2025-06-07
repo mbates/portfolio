@@ -1,0 +1,27 @@
+service: bates-portfolio-send
+provider:
+  name: aws
+  runtime: nodejs22.x
+  stage: api
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - ses:SendEmail
+      Resource: '*'
+  apiGateway:
+    restApiId:
+      'Fn::ImportValue': BSPortfolioGW-restApiId
+    restApiRootResourceId:
+      'Fn::ImportValue': BSPortfolioGW-rootResourceId
+functions:
+  send-email:
+    handler: email.handler
+    environment:
+      RECIPIENT_EMAIL: mike@bates-solutions.com
+      SENDER_EMAIL: portfolio@bates-solutions.com
+    events:
+      - http:
+          path: portfolio-message
+          method: post
+          cors: true
