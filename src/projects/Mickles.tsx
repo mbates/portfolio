@@ -14,17 +14,16 @@ const Mickles: React.FC = () => {
         <img src={MandisMicklesLogo} />
       </Link>
       <p className='my-5'>
-        Mickles Canning is a startup business in the food industry. The founders
-        needed web & technical assistance and help setting up and growing a new
-        business.
+        Mickles Canning Inc. is a new gourmet pickle business in Vancouver. They
+        sell their pickles in farmers markets and local stores.
       </p>
 
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
         Services Provided
       </h2>
       <p className='my-5'>
-        Bates Solutions architected and built a custom e-commerce website,
-        integrated with Mickles' payment provider{' '}
+        Bates Solutions architected, built and deployed a custom e-commerce
+        website, integrated with Mickles' payment provider{' '}
         <Link
           to='https://squareup.com/us/en'
           target='_blank'
@@ -33,16 +32,24 @@ const Mickles: React.FC = () => {
           squareup.com
         </Link>
         . We designed the UI and UX to match the branding and brand language
-        that Mandis Mickles had established.
+        that Mandis Mickles had established. We also built the continuous
+        integration for the site, deploying it to AWS.
       </p>
       <p className='my-5'>
-        We also supported them through their incorporation process, helped build
-        technical documentation to meet regulatory requirements, and managed
-        their online technical business accounts.
+        We are ongoing consultants for them, working on technical documentation,
+        regulatory compliance and managing their technical needs.
       </p>
       <p className='my-5'>
-        Mandis Mickles have 2 other websites that were also built, deployed and
-        managed by Bates Solutions.{' '}
+        Bates Solutions built, deployed and manages 3 websites for Mandis
+        Mickles.{' '}
+        <Link
+          to='https://mandismickles.com'
+          target='_blank'
+          className='text-blue-500 flex items-center'
+        >
+          <img src={MandisMicklesLogo} className='w-6 h-6 mt-1 mr-1' />
+          mandismickles.com
+        </Link>
         <Link
           to='https://mickleskitchen.com'
           target='_blank'
