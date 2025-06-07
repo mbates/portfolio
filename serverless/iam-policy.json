@@ -56,7 +56,12 @@
     {
       "Sid": "ApiGatesway",
       "Effect": "Allow",
-      "Action": ["apigateway:PUT", "apigateway:POST", "apigateway:GET"],
+      "Action": [
+        "apigateway:PUT",
+        "apigateway:POST",
+        "apigateway:GET",
+        "apigateway:DELETE"
+      ],
       "Resource": ["arn"]
     },
     {
@@ -69,7 +74,7 @@
         "iam:PutRolePolicy",
         "iam:PassRole"
       ],
-      "Resource": ["arn*"]
+      "Resource": ["arn"]
     },
     {
       "Sid": "Logs",
