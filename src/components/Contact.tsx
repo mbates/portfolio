@@ -26,8 +26,7 @@ const Contact: React.FC<ContactProps> = ({ message, setMessage }) => {
           message,
         }
       );
-      setContact;
-      ('');
+      setContact('');
       setMessage('');
       setSending(false);
     }
