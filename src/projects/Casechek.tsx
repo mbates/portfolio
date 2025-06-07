@@ -12,9 +12,16 @@ const Casechek: React.FC = () => {
         <img src={Logo} />
       </Link>
       <p className='my-5'>
-        Casechek was founded to solve problems hospitals experience when
-        procuring medical devices for surgical procedures. They were the first
-        to market in this area.
+        <Link
+          to='https://casechek.com'
+          className='text-blue-400'
+          target='_blank'
+        >
+          Casechek
+        </Link>{' '}
+        was founded to solve problems hospitals experience when procuring
+        medical devices for surgical procedures. They were the first to market
+        in this area.
       </p>
       <p className='my-5'>
         Bates Solutions was contracted to work with Casechek from its inception.
