@@ -8,7 +8,7 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({ message, setMessage }) => {
-  const [contact, setContact] = useState('604');
+  const [contact, setContact] = useState('');
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
 
