@@ -35,12 +35,15 @@ const Terminal: React.FC<TerminalProps> = ({
       setProject('');
       setMessage('');
     },
+    git: () => {
+      window.open('https://github.com/mbates', '_blank')?.focus();
+    },
+    ls: <div>{projectList}</div>,
     send: (message: string) => {
       setContent('contact');
       setProject('');
       setMessage(message);
     },
-    ls: <div>{projectList}</div>,
     show: (project: string) => {
       if (projects.includes(project)) {
         setContent('project');
@@ -61,6 +64,9 @@ const Terminal: React.FC<TerminalProps> = ({
         project details <br />
         <span className='text-yellow-200'>about </span>
         about us and our services
+        <br />
+        <span className='text-yellow-200'>git </span>
+        open our github repositories
         <br />
         <span className='text-yellow-200'>send [message to send] </span>
         send us a message
