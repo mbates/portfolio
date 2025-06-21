@@ -71,6 +71,57 @@
   }
 }
 
+.animated-dialog {
+  animation: scale-out 500ms forwards, fade-out 500ms forwards;
+
+  &[open] {
+    animation: scale-in 500ms forwards, fade-in 500ms forwards;
+  }
+  &[open]::backdrop {
+    animation: fade-in 500ms forwards;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    display: block;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes scale-out {
+  20% {
+    transform: scale(0);
+    display: none;
+  }
+  100% {
+    transform: scale(0);
+    display: none;
+  }
+}
+
 .capitalize:first-letter {
   text-transform: uppercase;
 }
