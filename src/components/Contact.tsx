@@ -25,15 +25,11 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log('errors', errors);
     setSending(true);
     setSent(false);
     const res = await axios.post(
       'https://427im0p45b.execute-api.us-east-1.amazonaws.com/api/portfolio-message',
-      {
-        contact: data.email,
-        message: data.message,
-      }
+      data
     );
     setSending(false);
     setSent(true);

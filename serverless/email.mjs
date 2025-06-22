@@ -7,7 +7,9 @@ export const handler = async (event, _context, callback) => {
     const body = JSON.parse(event.body);
     const emailbody = `
     <div>
-      ${body.contact}<br />
+      ${body.name}<br />
+      ${body.email}<br />
+      ${body.phone}<br />
       ${body.message}
     </div>`;
 
