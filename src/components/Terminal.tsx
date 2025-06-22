@@ -30,11 +30,6 @@ const Terminal: React.FC<TerminalProps> = ({
     );
   });
   const commands = {
-    about: () => {
-      setContent('about');
-      setProject('');
-      setMessage('');
-    },
     git: () => {
       window.open('https://github.com/mbates', '_blank')?.focus();
     },
@@ -59,17 +54,14 @@ const Terminal: React.FC<TerminalProps> = ({
         show all commands
         <br />
         <span className='text-yellow-200'>ls </span>
-        list the projects we've worked on <br />
+        list the projects I've worked on <br />
         <span className='text-yellow-200'>show [project] </span>
         project details <br />
-        <span className='text-yellow-200'>about </span>
-        about us and our services
-        <br />
         <span className='text-yellow-200'>git </span>
-        open our github repositories
+        open my github repositories
         <br />
         <span className='text-yellow-200'>send [message to send] </span>
-        send us a message
+        send me a message
         <br />
         <span className='text-yellow-200'>clear </span>
         clears the console
