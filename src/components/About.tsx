@@ -4,8 +4,9 @@ const About: React.FC = () => {
   return (
     <div className='w-f'>
       <p className='my-5'>
-        Based in Vancouver, Canada since 2013. We have delivered solutions used
-        across Canada and the US.
+        I live in Vancouver, Canada and have spent the last 25 years working
+        with Canadian, US and UK software companies, primarily focused on
+        healthcare software.
       </p>
 
       <h3 className='text-2xl font-semibold tracking-tight my-3'>

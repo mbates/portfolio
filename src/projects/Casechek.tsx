@@ -3,7 +3,7 @@ import Logo from '../assets/casechek-logo.png';
 
 const Casechek: React.FC = () => {
   return (
-    <div className='w-f'>
+    <div className='w-f p-3 pr-5'>
       <Link
         to='https://casechek.com'
         className='float-right w-100'
@@ -24,30 +24,30 @@ const Casechek: React.FC = () => {
         in this area.
       </p>
       <p className='my-5'>
-        Bates Solutions was contracted to work with Casechek from its inception.
-        We built novel, industry first solutions with limited initial resources.
-        Helped grow an in house engineering team and built a robust enterprise
-        ready system with that team. The platform was extended and scaled to
-        over 200 hospitals across the US, adding integrations with a variety of
-        hospital systems, automating numerous processes for them.
+        I was contracted to work with Casechek from its inception. We built
+        novel, industry first solutions with limited initial resources. Helped
+        grow an in house engineering team and built a robust enterprise ready
+        system with that team. The platform was extended and scaled to over 200
+        hospitals across the US, adding integrations with a variety of hospital
+        systems, automating numerous processes for them.
       </p>
       <p className='my-5'>
-        While working with Casechek, they were recognized in the industry,
-        winning the 2023 Chicago Innovation award for newcomers, and the 2023
-        SMI Tom Hughes Collaboration award with Northwestern Medicine.
+        While working with Casechek, we were recognized in the industry, winning
+        the 2023 Chicago Innovation award for newcomers, and the 2023 SMI Tom
+        Hughes Collaboration award with Northwestern Medicine.
       </p>
 
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
         Services Provided
       </h2>
       <p className='my-5'>
-        We helped Casechek to architect, build and deploy numerous highly
-        available, secure, resilient backend systems, and numerous easy to use
-        web, mobile and desktop applications.
+        I architected, built and deployed numerous highly available, secure,
+        resilient backend systems, and numerous easy to use web, mobile and
+        desktop applications.
       </p>
       <p className='my-5'>
-        We also implemented Continousous Integration, deploying their
-        applications to AWS, iTunes and Play stores
+        I also implemented Continousous Integration, deploying applications to
+        AWS, iTunes and Play stores
       </p>
 
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
