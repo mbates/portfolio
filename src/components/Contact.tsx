@@ -41,7 +41,7 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
   };
 
   return (
-    <div className='px-8'>
+    <div className='w-f p-3 pr-5'>
       <form className='bg-white' onSubmit={handleSubmit(onSubmit)}>
         <div className='mb-4'>
           <br />
