@@ -1,6 +1,5 @@
 import './HomePage.scss';
 import { useEffect, useRef, useState } from 'react';
-import Logo from '../components/Logo';
 import Terminal from '../components/Terminal';
 import About from '../components/About';
 import Project from '../components/Project';
@@ -36,9 +35,8 @@ export default function HomePage() {
       <div className='terminal'>
         <div className='header'>
           <div className='flex flex-row ml-4 -translate-y-2'>
-            <Logo />
-            <h1 className='text-8xl justify-self-start text-purple-600 flex flex-col translate-y-1'>
-              Bates <span>Solutions</span>
+            <h1 className='text-8xl justify-self-start text-orange-900 flex flex-col translate-y-5'>
+              Mike Bates <span>Full Stack Engineer</span>
             </h1>
           </div>
         </div>
@@ -129,9 +127,7 @@ export default function HomePage() {
           <div className='bg-white h-190 border-t-0 w-full overflow-y-scroll px-4 scroll-thin'>
             {project !== '' && <Project project={project} />}
             {content === 'about' && <About />}
-            {content === 'contact' && (
-              <Contact message={message} setMessage={setMessage} />
-            )}
+            {content === 'contact' && <Contact message={message} />}
           </div>
         </div>
       </dialog>
