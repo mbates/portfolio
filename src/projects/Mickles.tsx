@@ -31,16 +31,16 @@ const Mickles: React.FC = () => {
         >
           squareup.com
         </Link>
-        . I designed the UI and UX to match the branding and brand language that
-        Mandis Mickles had established. I also built the continuous integration
-        for the site, deploying it to AWS.
+        . The UI and UX was designed to match the branding and brand language
+        that Mandis Mickles had established. I also built the continuous
+        integration for the site, deploying it to AWS.
       </p>
       <p className='my-5'>
-        I consultant for them, working on technical documentation, regulatory
-        compliance and managing their technical needs.
+        I am responsible for the technical & regulatory compliance
+        documentation, and technical needs.
       </p>
       <p className='my-5'>
-        I built, deployed and manage 3 websites for Mandis Mickles.{' '}
+        Mandis Mickles have 3 websies that I built, deployed and manage.{' '}
         <Link
           to='https://mandismickles.com'
           target='_blank'
