@@ -17,6 +17,7 @@ interface ContactProps {
 const Contact: React.FC<ContactProps> = ({ message }) => {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
 
   const {
     register,
@@ -25,15 +26,21 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    setSending(true);
-    setSent(false);
-    const res = await axios.post(
-      'https://427im0p45b.execute-api.us-east-1.amazonaws.com/api/portfolio-message',
-      data
-    );
-    setSending(false);
-    setSent(true);
-    console.log('res', res);
+    try {
+      setSending(true);
+      setSent(false);
+      const res = await axios.post(
+        'https://427im0p45b.execute-api.us-east-1.amazonaws.com/api/portfolio-message',
+        data
+      );
+      setSending(false);
+      setSent(true);
+      console.log('res', res);
+    } catch (e: any) {
+      console.error('thrown error', e);
+      setSending(false);
+      setError(e.message);
+    }
   };
 
   return (
@@ -126,6 +133,7 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
               Thanks, your message has been sent.
             </span>
           )}
+          {error && <span className='text-red-600'>Error! {error}</span>}
         </div>
       </form>
     </div>
