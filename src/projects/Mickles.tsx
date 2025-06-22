@@ -5,7 +5,7 @@ import LotusLogo from '../assets/lotus-logo.png';
 
 const Mickles: React.FC = () => {
   return (
-    <div className='w-f'>
+    <div className='w-f p-3 pr-5'>
       <Link
         to='https://mandismickles.com'
         className='float-right w-40'
@@ -22,8 +22,8 @@ const Mickles: React.FC = () => {
         Services Provided
       </h2>
       <p className='my-5'>
-        Bates Solutions architected, built and deployed a custom e-commerce
-        website, integrated with Mickles' payment provider{' '}
+        I architected, built and deployed a custom e-commerce website,
+        integrated with Mickles' payment provider{' '}
         <Link
           to='https://squareup.com/us/en'
           target='_blank'
@@ -31,17 +31,16 @@ const Mickles: React.FC = () => {
         >
           squareup.com
         </Link>
-        . We designed the UI and UX to match the branding and brand language
-        that Mandis Mickles had established. We also built the continuous
-        integration for the site, deploying it to AWS.
+        . I designed the UI and UX to match the branding and brand language that
+        Mandis Mickles had established. I also built the continuous integration
+        for the site, deploying it to AWS.
       </p>
       <p className='my-5'>
-        We are ongoing consultants for them, working on technical documentation,
-        regulatory compliance and managing their technical needs.
+        I consultant for them, working on technical documentation, regulatory
+        compliance and managing their technical needs.
       </p>
       <p className='my-5'>
-        Bates Solutions built, deployed and manages 3 websites for Mandis
-        Mickles.{' '}
+        I built, deployed and manage 3 websites for Mandis Mickles.{' '}
         <Link
           to='https://mandismickles.com'
           target='_blank'

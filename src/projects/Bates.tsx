@@ -5,14 +5,22 @@ import Logo from '../components/Logo';
 
 const Bates: React.FC = () => {
   return (
-    <div className='w-f'>
+    <div className='w-f p-3 pr-5'>
       <p className='my-5'>
-        <div className='float-right ml-4 mt-1'>
+        <div className='float-right ml-4 mt-1 flex'>
           <Logo />
+          <div className='logo text-8xl justify-self-start text-purple-600 flex flex-col translate-y-1'>
+            Bates <span>Solutions</span>
+          </div>
         </div>
       </p>
       {/* <h2 className='text-5xl font-semibold tracking-tight'>Zeepler</h2>
       <div>description</div> */}
+
+      <p className='my-5'>
+        I founded Bates Solutiuons in 2014 to allow me to work with OpsKwan and
+        Casechek at the same time.
+      </p>
 
       <h2 className='text-3xl font-semibold tracking-tight'>Portfolio</h2>
       <p className='my-5'>
