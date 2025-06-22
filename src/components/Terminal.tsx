@@ -14,7 +14,8 @@ const Terminal: React.FC<TerminalProps> = ({
 }: TerminalProps) => {
   const welcomeMessage = (
     <div>
-      Type <span className='text-yellow-200'>help</span> for commands
+      <span className='text-white'>Type</span> help
+      <span className='text-white'> for commands</span>
     </div>
   );
   const prompt = (
@@ -50,21 +51,23 @@ const Terminal: React.FC<TerminalProps> = ({
     },
     help: (
       <div>
-        <span className='text-yellow-200'>help </span>
-        show all commands
+        help
+        <span className='text-white'> show all commands</span>
         <br />
-        <span className='text-yellow-200'>ls </span>
-        list the projects I've worked on <br />
-        <span className='text-yellow-200'>show [project] </span>
-        project details <br />
-        <span className='text-yellow-200'>git </span>
-        open my github repositories
+        ls
+        <span className='text-white'> list the projects I've worked on</span>
         <br />
-        <span className='text-yellow-200'>send [message to send] </span>
-        send me a message
+        show [project]
+        <span className='text-white'> display project details </span>
         <br />
-        <span className='text-yellow-200'>clear </span>
-        clears the console
+        git
+        <span className='text-white'> open my github repositories</span>
+        <br />
+        send [message to send]
+        <span className='text-white'> send me a message</span>
+        <br />
+        clear
+        <span className='text-white'> clears the console</span>
         <br />
       </div>
     ),
@@ -72,8 +75,8 @@ const Terminal: React.FC<TerminalProps> = ({
   const theme = {
     'bates-solutions': {
       themeBGColor: '#012456',
-      themeColor: '#ffffff',
-      themePromptColor: '#ffffff',
+      themeColor: 'oklch(0.945 0.129 101.54)',
+      themePromptColor: 'oklch(0.707 0.022 261.325)',
     },
   };
   const defaultHandler = (input: string) => {
