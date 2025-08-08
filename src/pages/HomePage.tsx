@@ -36,7 +36,7 @@ export default function HomePage() {
         <div className='header'>
           <div className='flex flex-row ml-4 -translate-y-2'>
             <h1 className='text-8xl justify-self-start text-orange-900 flex flex-col translate-y-5'>
-              Mike Bates <span>Full Stack Engineer</span>
+              M. Bates <span>Full Stack Engineer</span>
             </h1>
           </div>
         </div>

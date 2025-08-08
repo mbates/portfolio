@@ -18,7 +18,7 @@ functions:
   send-email:
     handler: email.handler
     environment:
-      RECIPIENT_EMAIL: mike@bates-solutions.com
+      RECIPIENT_EMAIL: mbates@bates-solutions.com
       SENDER_EMAIL: portfolio@bates-solutions.com
     events:
       - http:
