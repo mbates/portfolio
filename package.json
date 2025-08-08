@@ -14,7 +14,7 @@
     "remove:lambda": "serverless --aws-profile=bates --config ./serverless/lambda.yml remove"
   },
   "dependencies": {
-    "@tailwindcss/vite": "4.1.4",
+    "@tailwindcss/vite": "4.1.11",
     "@types/node": "22.15.29",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
