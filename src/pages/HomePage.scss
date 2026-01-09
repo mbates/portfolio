@@ -130,3 +130,11 @@
 .scroll-thin {
   scrollbar-width: thin;
 }
+
+.terminal section {
+  scrollbar-width: thin;
+
+  & * {
+    scrollbar-width: thin;
+  }
+}
