@@ -22,6 +22,7 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Inputs>();
 
@@ -29,17 +30,18 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
     try {
       setSending(true);
       setSent(false);
-      const res = await axios.post(
-        'https://427im0p45b.execute-api.us-east-1.amazonaws.com/api/portfolio-message',
-        data
-      );
+      setError('');
+      await axios.post(import.meta.env.VITE_API_URL, data);
       setSending(false);
       setSent(true);
-      console.log('res', res);
-    } catch (e: any) {
-      console.error('thrown error', e);
+      reset();
+    } catch (e: unknown) {
       setSending(false);
-      setError(e.message);
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError('An unexpected error occurred');
+      }
     }
   };
 
@@ -122,11 +124,12 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
 
         <div className='mb-4'>
           <button
-            className='bg-orange-800 hover:bg-orangwe-900 text-white font-bold py-2 px-4 rounded cursor-pointer flex'
+            className='bg-orange-800 hover:bg-orange-900 text-white font-bold py-2 px-4 rounded cursor-pointer flex disabled:opacity-50 disabled:cursor-not-allowed'
             type='submit'
+            disabled={sending}
           >
             {sending && <Spinner />}
-            <span>Send</span>
+            <span>{sending ? 'Sending...' : 'Send'}</span>
           </button>
           {sent && (
             <span className='text-green-600'>
