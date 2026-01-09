@@ -2,6 +2,14 @@
 .env
 .env.local
 
+# Internal documentation
+docs/plans/
+.claude/
+CLAUDE.md
+
+# Serverless deployment artifacts
+serverless/.serverless/
+
 # Logs
 logs
 *.log
