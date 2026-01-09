@@ -17,11 +17,18 @@ provider:
 functions:
   send-email:
     handler: email.handler
+    timeout: 10
+    memorySize: 128
     environment:
       RECIPIENT_EMAIL: mbates@bates-solutions.com
       SENDER_EMAIL: portfolio@bates-solutions.com
+      CORS_ORIGIN: https://bates-solutions.com
     events:
       - http:
           path: portfolio-message
           method: post
-          cors: true
+          cors:
+            origin: 'https://bates-solutions.com'
+            headers:
+              - Content-Type
+            allowCredentials: false

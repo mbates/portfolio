@@ -286,3 +286,37 @@ curl -X POST https://427im0p45b.execute-api.us-east-1.amazonaws.com/api/portfoli
 4. **Safe Logging** - No PII logged to CloudWatch
 5. **CORS Configuration** - Origin configurable via environment variable
 6. **Reply-To Header** - Added so replies go to the sender, not the portfolio email
+
+## Unit Tests
+
+### 3. Add Lambda Unit Tests
+
+**File:** `serverless/__tests__/email.test.mjs`
+
+Tests for the helper functions and handler:
+
+1. **escapeHtml tests:**
+   - Escapes HTML special characters
+   - Returns empty string for non-string input
+   - Handles empty string
+
+2. **validateInput tests:**
+   - Returns valid for complete valid input
+   - Returns error for missing name
+   - Returns error for missing email
+   - Returns error for invalid email format
+   - Returns error for missing message
+   - Returns error for field length exceeding limits
+   - Returns error for null/undefined body
+
+3. **buildResponse tests:**
+   - Returns correct status code
+   - Includes CORS headers
+   - Stringifies body to JSON
+
+4. **handler tests:**
+   - Returns 400 for empty body
+   - Returns 400 for invalid JSON
+   - Returns 400 for validation failures
+   - Returns 200 on successful email send (mocked)
+   - Returns 500 on SES failure (mocked)

@@ -10,12 +10,14 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
     css: true,
+    include: ['src/**/*.test.{ts,tsx}', 'serverless/**/*.test.{js,mjs}'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       exclude: [
         'node_modules/',
         'src/test/',
+        'serverless/__tests__/',
         '**/*.d.ts',
         '**/*.config.*',
         '**/main.tsx',
