@@ -3,7 +3,7 @@ import Logo from '../assets/opskwan-logo.png';
 const OpsKwan: React.FC = () => {
   return (
     <div className='w-f p-3 pr-5'>
-      <img src={Logo} className='float-right' />
+      <img src={Logo} className='float-right' alt="OpsKwan logo" />
       <p className='my-5'>
         OpsKwan was founded by a Medical Device distributorship with a dual
         goal: design and develop a modular solution to solve logistical problems

@@ -11,7 +11,7 @@ const Mickles: React.FC = () => {
         className='float-right w-40'
         target='_blank'
       >
-        <img src={MandisMicklesLogo} />
+        <img src={MandisMicklesLogo} alt="Mandi's Mickles logo" />
       </Link>
       <p className='my-5'>
         Mickles Canning Inc. is a new gourmet pickle business in Vancouver. They
@@ -46,7 +46,7 @@ const Mickles: React.FC = () => {
           target='_blank'
           className='text-blue-500 flex items-center'
         >
-          <img src={MandisMicklesLogo} className='w-6 h-6 mt-1 mr-1' />
+          <img src={MandisMicklesLogo} className='w-6 h-6 mt-1 mr-1' alt="Mandi's Mickles logo" />
           mandismickles.com
         </Link>
         <Link
@@ -54,7 +54,7 @@ const Mickles: React.FC = () => {
           target='_blank'
           className='text-blue-500 flex items-center'
         >
-          <img src={MicklesKithcenLogo} className='w-6 h-6 mt-1 mr-1' />
+          <img src={MicklesKithcenLogo} className='w-6 h-6 mt-1 mr-1' alt="Mickles Kitchen logo" />
           mickleskitchen.com
         </Link>
         <Link
@@ -62,7 +62,7 @@ const Mickles: React.FC = () => {
           target='_blank'
           className='text-blue-500 flex items-center'
         >
-          <img src={LotusLogo} className='w-6 h-6 mt-1 mr-1' />
+          <img src={LotusLogo} className='w-6 h-6 mt-1 mr-1' alt="Lotus Bodywork logo" />
           lotusbodywork.ca
         </Link>
       </p>

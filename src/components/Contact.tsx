@@ -57,6 +57,7 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
             Name
           </label>
           <input
+            id='name'
             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight'
             {...register('name', { required: true })}
           />
@@ -73,6 +74,7 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
             Email
           </label>
           <input
+            id='email'
             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight'
             {...register('email', {
               required: true,
@@ -99,6 +101,7 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
             Phone
           </label>
           <input
+            id='phone'
             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight'
             {...register('phone')}
           />
@@ -112,6 +115,7 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
             Message
           </label>
           <textarea
+            id='message'
             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight'
             rows={4}
             defaultValue={message}
