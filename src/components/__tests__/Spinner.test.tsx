@@ -1,0 +1,13 @@
+import { describe, it, expect } from 'vitest';
+import { render } from '@testing-library/react';
+import Spinner from '../Spinner';
+
+describe('Spinner', () => {
+  it('renders svg spinner', () => {
+    const { container } = render(<Spinner />);
+
+    const svg = container.querySelector('svg');
+    expect(svg).toBeInTheDocument();
+    expect(svg).toHaveClass('animate-spin');
+  });
+});

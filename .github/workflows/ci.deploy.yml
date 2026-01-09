@@ -20,9 +20,10 @@ jobs:
           node-version: '20.x'
       - name: Create .env file
         run: echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
-      - name: Run build for PRs
+      - name: Run build and tests for PRs
         run: |
           npm ci
+          npm run test:run
           npm run build
   deployment:
     if: ${{ github.actor != 'dependabot[bot]' }}
