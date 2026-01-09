@@ -21,7 +21,7 @@ describe('Project', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText(/opskwan was founded/i)).toBeInTheDocument();
+    expect(screen.getByText(/multi-tenant saas platform/i)).toBeInTheDocument();
   });
 
   it('renders Mickles project', () => {
