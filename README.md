@@ -28,19 +28,71 @@ Personal portfolio website for [bates-solutions.com](https://bates-solutions.com
 
 ## Getting Started
 
-```bash
-# Install dependencies
-npm install
+### Prerequisites
 
-# Start development server
-npm start
+- Node.js 20+
+- AWS account (for Lambda deployment)
+- AWS CLI configured
+- Serverless Framework (`npm install -g serverless`)
 
-# Run tests
-npm test
+### Local Development
 
-# Build for production
-npm run build
-```
+1. Clone the repository
+   ```bash
+   git clone https://github.com/mbates/portfolio.git
+   cd portfolio
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env` with your API Gateway URL (or leave empty for local dev without contact form).
+
+4. Start the development server
+   ```bash
+   npm start
+   ```
+
+### Forking This Project
+
+If you want to use this as a template for your own portfolio:
+
+1. **Fork the repository** on GitHub
+
+2. **Update personal information:**
+   - `index.html` - Update title, meta tags, and structured data
+   - `src/pages/` - Update content with your own projects and bio
+   - `public/` - Replace favicon and images
+
+3. **Set up the contact form Lambda:**
+   - Update `serverless/lambda.yml`:
+     - `RECIPIENT_EMAIL` - Your email address
+     - `SENDER_EMAIL` - Your verified SES email
+     - `CORS_ORIGIN` - Your domain
+   - Verify your domain/email in AWS SES
+   - Deploy: `npm run deploy:lambda`
+
+4. **Configure CI/CD** (GitHub Actions):
+
+   Add these secrets/variables in your repo settings:
+
+   | Type | Name | Description |
+   |------|------|-------------|
+   | Secret | `AWS_SECRET_ACCESS_KEY` | AWS secret key |
+   | Secret | `VITE_API_URL` | Your API Gateway endpoint |
+   | Variable | `AWS_ACCESS_KEY` | AWS access key ID |
+   | Variable | `AWS_ACCOUNT_ID` | Your AWS account ID |
+   | Variable | `AWS_REGION` | e.g., `us-east-1` |
+   | Variable | `AWS_BUCKET` | S3 bucket URL (s3://...) |
+   | Variable | `distribution_id` | CloudFront distribution ID |
+
+5. **Push to `main`** to trigger deployment
 
 ## Testing
 
