@@ -11,7 +11,7 @@ describe('Project', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText(/casechek inc/i)).toBeInTheDocument();
+    expect(screen.getByText(/automates implant supply chain/i)).toBeInTheDocument();
   });
 
   it('renders OpsKwan project', () => {
