@@ -31,8 +31,24 @@ const Terminal: React.FC<TerminalProps> = ({
     );
   });
   const commands = {
+    about: () => {
+      setContent('about');
+      setProject('');
+      setMessage('');
+    },
+    contact: () => {
+      setContent('contact');
+      setProject('');
+      setMessage('');
+    },
     git: () => {
       window.open('https://github.com/mbates', '_blank')?.focus();
+    },
+    linkedin: () => {
+      window.open(
+        'https://www.linkedin.com/in/m-bates-baab51333/',
+        '_blank'
+      )?.focus();
     },
     ls: <div>{projectList}</div>,
     send: (message: string) => {
@@ -49,21 +65,61 @@ const Terminal: React.FC<TerminalProps> = ({
         return `The project "${project}" doesn't exist`;
       }
     },
+    skills: (
+      <div>
+        <span className='text-yellow-200'>Frontend:</span>
+        <span className='text-white'> Angular, React, Flutter, RxJS, Electron</span>
+        <br />
+        <span className='text-yellow-200'>Backend:</span>
+        <span className='text-white'> NestJS, Symfony, PHP, Node.js, C#</span>
+        <br />
+        <span className='text-yellow-200'>Database:</span>
+        <span className='text-white'> PostgreSQL, MySQL, DynamoDB, Aurora</span>
+        <br />
+        <span className='text-yellow-200'>AWS:</span>
+        <span className='text-white'>
+          {' '}
+          EC2, Lambda, ECS, S3, CloudFront, RDS, API Gateway
+        </span>
+        <br />
+        <span className='text-yellow-200'>DevOps:</span>
+        <span className='text-white'>
+          {' '}
+          Terraform, Docker, GitHub Actions, Serverless
+        </span>
+        <br />
+        <span className='text-yellow-200'>Testing:</span>
+        <span className='text-white'> Jest, Cypress, PHPUnit, Karma, Jasmine</span>
+        <br />
+      </div>
+    ),
     help: (
       <div>
         help
         <span className='text-white'> show all commands</span>
         <br />
+        about
+        <span className='text-white'> learn more about me</span>
+        <br />
+        skills
+        <span className='text-white'> list my technical skills</span>
+        <br />
         ls
         <span className='text-white'> list the projects I've worked on</span>
         <br />
         show [project]
-        <span className='text-white'> display project details </span>
+        <span className='text-white'> display project details</span>
         <br />
         git
-        <span className='text-white'> open my github repositories</span>
+        <span className='text-white'> open my GitHub profile</span>
         <br />
-        send [message to send]
+        linkedin
+        <span className='text-white'> open my LinkedIn profile</span>
+        <br />
+        contact
+        <span className='text-white'> open the contact form</span>
+        <br />
+        send [message]
         <span className='text-white'> send me a message</span>
         <br />
         clear
