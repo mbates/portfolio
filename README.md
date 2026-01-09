@@ -58,12 +58,21 @@ npm run test:coverage
 ## Deployment
 
 ### Frontend (S3/CloudFront)
-Automatically deployed via GitHub Actions on push to `develop`.
+Automatically deployed via GitHub Actions on push to `main`.
 
 ### Lambda (API Gateway)
 ```bash
 npm run deploy:lambda
 ```
+
+## Contributing
+
+This project uses [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow):
+
+1. Create a feature branch from `main`
+2. Make changes and commit
+3. Open a pull request to `main`
+4. Merge after review and CI passes
 
 ## Project Structure
 
