@@ -31,7 +31,7 @@ describe('Project', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText(/mickles canning/i)).toBeInTheDocument();
+    expect(screen.getByText(/e-commerce platform/i)).toBeInTheDocument();
   });
 
   it('renders Bates project', () => {
