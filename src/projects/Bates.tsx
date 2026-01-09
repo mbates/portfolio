@@ -43,7 +43,7 @@ const Bates: React.FC = () => {
           to='https://github.com/mbates/portfolio'
           className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2  bg-purple-100'
         >
-          <img src={GithubLogo} className='w-6 mr-1' />
+          <img src={GithubLogo} className='w-6 mr-1' alt="GitHub logo" />
           https://github.com/mbates/portfolio
         </Link>
       </p>
@@ -62,7 +62,7 @@ const Bates: React.FC = () => {
           to='https://github.com/mbates/bates-solutions-example'
           className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
         >
-          <img src={GithubLogo} className='w-6 mr-1' />
+          <img src={GithubLogo} className='w-6 mr-1' alt="GitHub logo" />
           https://github.com/mbates/bates-solutions-example
         </Link>
         <br />
@@ -75,7 +75,7 @@ const Bates: React.FC = () => {
           to=' https://github.com/mbates/bates-solutions-example-common'
           className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2  bg-purple-100'
         >
-          <img src={GithubLogo} className='w-6 mr-1' />
+          <img src={GithubLogo} className='w-6 mr-1' alt="GitHub logo" />
           https://github.com/mbates/bates-solutions-example-common
         </Link>
         <br />
@@ -85,7 +85,7 @@ const Bates: React.FC = () => {
           to=' https://github.com/mbates/bates-solutions-common'
           className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2  bg-purple-100'
         >
-          <img src={GithubLogo} className='w-6 mr-1' />
+          <img src={GithubLogo} className='w-6 mr-1' alt="GitHub logo" />
           https://github.com/mbates/bates-solutions-common
         </Link>
       </p>

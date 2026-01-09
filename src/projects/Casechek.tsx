@@ -9,7 +9,7 @@ const Casechek: React.FC = () => {
         className='float-right w-100'
         target='_blank'
       >
-        <img src={Logo} />
+        <img src={Logo} alt="Casechek logo" />
       </Link>
       <p className='my-5'>
         <Link

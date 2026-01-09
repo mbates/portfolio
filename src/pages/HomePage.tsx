@@ -52,36 +52,39 @@ export default function HomePage() {
       <dialog
         ref={dialogRef}
         className='animated-dialog rounded-lg w-full h-200 max-w-240 mt-10 justify-self-center shadow-lg backdrop:bg-black/50 backdrop:backdrop-blur-sm'
+        aria-label='Project details'
       >
         <div>
           <div className='w-full rounded-t-lg bg-gray-200 flex justify-start items-center space-x-1.5 px-3'>
-            <span
-              className='w-3 h-3 rounded-full bg-red-400 cursor-pointer'
+            <button
+              type='button'
+              className='w-3 h-3 rounded-full bg-red-400 cursor-pointer hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-300'
               onClick={clearProject}
-            ></span>
-            <span className='w-3 h-3 rounded-full bg-yellow-400'></span>
-            <span className='w-3 h-3 rounded-full bg-green-400'></span>
+              aria-label='Close dialog'
+            ></button>
+            <span className='w-3 h-3 rounded-full bg-yellow-400' aria-hidden='true'></span>
+            <span className='w-3 h-3 rounded-full bg-green-400' aria-hidden='true'></span>
             {project === 'casechek' && (
               <div className='flex flex-row pt-1 pb-1 pl-3 pr-3 mt-1 ml-2 bg-stone-50 border-white border-l-1 border-t-1 border-r-1 rounded-tl-lg rounded-tr-lg'>
-                <img src={CasechekLogo} className='w-4 h-4 mt-1 mr-1' />{' '}
+                <img src={CasechekLogo} className='w-4 h-4 mt-1 mr-1' alt="Casechek logo" />{' '}
                 <span>Casechek</span>
               </div>
             )}
             {project === 'opskwan' && (
               <div className='flex flex-row pt-1 pb-1 pl-3 pr-3 mt-1 ml-2 bg-stone-50 border-white border-l-1 border-t-1 border-r-1 rounded-tl-lg rounded-tr-lg'>
-                <img src={OpsKwanLogo} className='w-4 h-4 mt-1 mr-1' />{' '}
+                <img src={OpsKwanLogo} className='w-4 h-4 mt-1 mr-1' alt="OpsKwan logo" />{' '}
                 <span>OpsKwan</span>
               </div>
             )}
             {project === 'mickles' && (
               <div className='flex flex-row pt-1 pb-1 pl-3 pr-3 mt-1 ml-2 bg-stone-50 border-white border-l-1 border-t-1 border-r-1 rounded-tl-lg rounded-tr-lg'>
-                <img src={MandisMicklesLogo} className='w-4 h-4 mt-1 mr-1' />{' '}
+                <img src={MandisMicklesLogo} className='w-4 h-4 mt-1 mr-1' alt="Mandi's Mickles logo" />{' '}
                 <span>Mandis Mickles</span>
               </div>
             )}
             {project === 'bates' && (
               <div className='flex flex-row pt-1 pb-1 pl-3 pr-3 mt-1 ml-2 bg-stone-50 border-white border-l-1 border-t-1 border-r-1 rounded-tl-lg rounded-tr-lg'>
-                <img src={BatesLogo} className='w-4 h-4 mt-1 mr-1' />{' '}
+                <img src={BatesLogo} className='w-4 h-4 mt-1 mr-1' alt="Bates Solutions logo" />{' '}
                 <span>Bates Solutions</span>
               </div>
             )}
