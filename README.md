@@ -1,4 +1,4 @@
-# M Bates Portfolio
+# Mike Bates Portfolio
 
 [![Build & Deploy](https://github.com/mbates/portfolio/actions/workflows/ci.deploy.yml/badge.svg)](https://github.com/mbates/portfolio/actions/workflows/ci.deploy.yml)
 [![Tests](https://img.shields.io/badge/tests-44%20passing-brightgreen)](https://github.com/mbates/portfolio)
