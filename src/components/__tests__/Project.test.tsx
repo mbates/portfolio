@@ -41,7 +41,7 @@ describe('Project', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText(/bates solutiuons/i)).toBeInTheDocument();
+    expect(screen.getByText(/founded in 2014/i)).toBeInTheDocument();
   });
 
   it('shows message for unknown project', () => {
