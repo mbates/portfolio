@@ -30,6 +30,11 @@ jobs:
     if: ${{ github.event_name == 'push' && github.actor != 'dependabot[bot]' }}
     name: Deploy to S3
     needs: [build]
+    # One deploy at a time, queued rather than cancelled: an older run's sync --delete finishing
+    # after a newer one would leave the site stale.
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
     runs-on: ubuntu-22.04
     # Assumes portfolio-github-deploy (bates-solutions monorepo, infra/personal) through GitHub's
     # OIDC token instead of long-lived access keys.
