@@ -17,7 +17,9 @@ const Bates: React.FC = () => {
 
       <p className='my-5'>
         Founded in 2013 in Vancouver, Canada. I work with Canadian, US and UK
-        software companies, primarily focused on <strong>healthcare software</strong>.
+        software companies. Most of my work has been in{' '}
+        <strong>healthcare software</strong>, and these days it also covers
+        commerce platforms, SaaS and cloud infrastructure.
         This portfolio and its supporting projects are open source.
       </p>
 
