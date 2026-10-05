@@ -1,14 +1,14 @@
 # Mike Bates Portfolio
 
 [![Build & Deploy](https://github.com/mbates/portfolio/actions/workflows/ci.deploy.yml/badge.svg)](https://github.com/mbates/portfolio/actions/workflows/ci.deploy.yml)
-[![Tests](https://img.shields.io/badge/tests-44%20passing-brightgreen)](https://github.com/mbates/portfolio)
+[![Tests](https://img.shields.io/badge/tests-52%20passing-brightgreen)](https://github.com/mbates/portfolio)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=white)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-7-646cff?logo=vite&logoColor=white)](https://vite.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Personal portfolio website for [bates-solutions.com](https://bates-solutions.com), built with React and deployed to AWS.
+Personal portfolio website at [mike.bates-solutions.com](https://mike.bates-solutions.com), built with React and deployed to AWS.
 
 ## Tech Stack
 
