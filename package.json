@@ -18,6 +18,7 @@
     "infra:init": "AWS_PROFILE=${AWS_PROFILE:-mike} terraform -chdir=infra init",
     "infra:plan": "AWS_PROFILE=${AWS_PROFILE:-mike} terraform -chdir=infra plan",
     "infra:apply": "AWS_PROFILE=${AWS_PROFILE:-mike} terraform -chdir=infra apply",
+    "infra:output": "AWS_PROFILE=${AWS_PROFILE:-mike} terraform -chdir=infra output",
     "infra:fmt": "terraform fmt -recursive infra"
   },
   "dependencies": {

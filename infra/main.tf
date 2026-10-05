@@ -24,6 +24,11 @@ data "aws_cloudfront_cache_policy" "optimized" {
 
 resource "aws_s3_bucket" "site" {
   bucket = local.bucket
+
+  # The live site's files: no plan may delete or replace the bucket.
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 # Only CloudFront, and only this distribution, can read the bucket.
@@ -85,6 +90,12 @@ resource "aws_cloudfront_distribution" "site" {
     acm_certificate_arn      = local.certificate_arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2021"
+  }
+
+  # The live distribution: no plan may delete or replace it. Moving the apex off it at launch is
+  # an in-place alias change.
+  lifecycle {
+    prevent_destroy = true
   }
 }
 

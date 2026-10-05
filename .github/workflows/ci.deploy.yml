@@ -45,7 +45,7 @@ jobs:
         run: echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
       - name: Build webapp
         run: npm run build
-      - uses: aws-actions/configure-aws-credentials@v4
+      - uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           aws-region: us-east-1
