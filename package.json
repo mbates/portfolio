@@ -14,7 +14,11 @@
     "deploy:gateway": "serverless --aws-profile=bates --config ./serverless/gateway.yml deploy",
     "remove:gateway": "serverless --aws-profile=bates --config ./serverless/gateway.yml remove",
     "deploy:lambda": "serverless --aws-profile=bates --config ./serverless/lambda.yml deploy",
-    "remove:lambda": "serverless --aws-profile=bates --config ./serverless/lambda.yml remove"
+    "remove:lambda": "serverless --aws-profile=bates --config ./serverless/lambda.yml remove",
+    "infra:init": "AWS_PROFILE=${AWS_PROFILE:-mike} terraform -chdir=infra init",
+    "infra:plan": "AWS_PROFILE=${AWS_PROFILE:-mike} terraform -chdir=infra plan",
+    "infra:apply": "AWS_PROFILE=${AWS_PROFILE:-mike} terraform -chdir=infra apply",
+    "infra:fmt": "terraform fmt -recursive infra"
   },
   "dependencies": {
     "@tailwindcss/vite": "4.1.11",
