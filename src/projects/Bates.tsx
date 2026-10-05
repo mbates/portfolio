@@ -19,8 +19,10 @@ const Bates: React.FC = () => {
         Founded in 2013 in Vancouver, Canada. I work with Canadian, US and UK
         software companies. Most of my work has been in{' '}
         <strong>healthcare software</strong>, and these days it also covers
-        commerce platforms, SaaS and cloud infrastructure.
-        This portfolio and its supporting projects are open source.
+        commerce platforms, SaaS and cloud infrastructure. My TypeScript SDKs
+        for the Square, Stripe and Clover APIs are open source (MIT). The source
+        for this portfolio and an archived microservices example is public on
+        GitHub.
       </p>
 
       <h2 className='text-3xl font-semibold tracking-tight my-5'>
@@ -46,6 +48,10 @@ const Bates: React.FC = () => {
             <li>NATS pub/sub messaging</li>
             <li>MongoDB persistence</li>
             <li>Auth service + example service with Jest tests</li>
+            <li>
+              Two npm libraries shared between services: common components for
+              the example, and global components for Express projects
+            </li>
           </ul>
         </div>
       </div>
@@ -88,6 +94,30 @@ const Bates: React.FC = () => {
         Source Code
       </h2>
       <div className='flex flex-col space-y-3'>
+        <Link
+          target='_blank'
+          to='https://github.com/mbates/squareup'
+          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
+        >
+          <img src={GithubLogo} className='w-6 mr-1' alt='GitHub logo' />
+          mbates/squareup
+        </Link>
+        <Link
+          target='_blank'
+          to='https://github.com/mbates/stripe'
+          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
+        >
+          <img src={GithubLogo} className='w-6 mr-1' alt='GitHub logo' />
+          mbates/stripe
+        </Link>
+        <Link
+          target='_blank'
+          to='https://github.com/mbates/clover'
+          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
+        >
+          <img src={GithubLogo} className='w-6 mr-1' alt='GitHub logo' />
+          mbates/clover
+        </Link>
         <Link
           target='_blank'
           to='https://github.com/mbates/portfolio'
