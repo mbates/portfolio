@@ -7,7 +7,7 @@ const OpsKwan: React.FC = () => {
       <p className='my-5'>
         Multi-tenant SaaS platform for healthcare supply chain management. Deployed across
         Canada with <strong>ZimmerBiomet</strong>, managing logistics for <strong>40% of
-        hospitals nationwide</strong>. <em>(Company shut down in 2020)</em>
+        hospitals nationwide</strong>. <em>(Company shut down in mid 2024)</em>
       </p>
 
       <h2 className='text-3xl font-semibold tracking-tight my-5'>

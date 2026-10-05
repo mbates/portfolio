@@ -53,26 +53,40 @@ export const validateInput = (body) => {
   return { valid: errors.length === 0, errors };
 };
 
+// The sites allowed to post, comma-separated in CORS_ORIGIN. The response names the request's
+// own origin when it's one of them (a browser accepts only an exact match), else the first.
+// The site answers on bates-solutions.com and mike.bates-solutions.com until the company site
+// takes the apex.
+const DEFAULT_ORIGINS = 'https://mike.bates-solutions.com,https://bates-solutions.com';
+
+export const allowedOrigin = (requestOrigin) => {
+  const origins = (process.env.CORS_ORIGIN || DEFAULT_ORIGINS).split(',').map((o) => o.trim());
+  return origins.includes(requestOrigin) ? requestOrigin : origins[0];
+};
+
 // Build response with CORS headers
-export const buildResponse = (statusCode, body) => {
+export const buildResponse = (statusCode, body, requestOrigin) => {
   return {
     statusCode,
     headers: {
       'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Origin': process.env.CORS_ORIGIN || 'https://bates-solutions.com',
+      'Access-Control-Allow-Origin': allowedOrigin(requestOrigin),
       'Access-Control-Allow-Methods': 'OPTIONS,POST',
       'Content-Type': 'application/json',
+      // The allowed origin depends on the request's, so caches must key on it.
+      Vary: 'Origin',
     },
     body: JSON.stringify(body),
   };
 };
 
 export const handler = async (event, _context, callback) => {
+  const origin = event.headers?.origin ?? event.headers?.Origin;
   try {
     // Check for empty body
     if (!event.body) {
       console.warn('Request received with empty body');
-      return callback(null, buildResponse(400, { error: 'Request body is required' }));
+      return callback(null, buildResponse(400, { error: 'Request body is required' }, origin));
     }
 
     // Parse JSON body
@@ -81,14 +95,14 @@ export const handler = async (event, _context, callback) => {
       body = JSON.parse(event.body);
     } catch (parseError) {
       console.warn('Failed to parse request body');
-      return callback(null, buildResponse(400, { error: 'Invalid JSON in request body' }));
+      return callback(null, buildResponse(400, { error: 'Invalid JSON in request body' }, origin));
     }
 
     // Validate input
     const validation = validateInput(body);
     if (!validation.valid) {
       console.warn('Validation failed:', validation.errors);
-      return callback(null, buildResponse(400, { error: 'Validation failed', details: validation.errors }));
+      return callback(null, buildResponse(400, { error: 'Validation failed', details: validation.errors }, origin));
     }
 
     // Sanitize and build email body
@@ -123,11 +137,11 @@ export const handler = async (event, _context, callback) => {
     await sesClient.send(command);
 
     console.info('Email sent successfully');
-    return callback(null, buildResponse(200, { message: 'Email sent successfully' }));
+    return callback(null, buildResponse(200, { message: 'Email sent successfully' }, origin));
   } catch (error) {
     // Log error without sensitive details
     console.error('Failed to send email:', error.name, error.message);
 
-    return callback(null, buildResponse(500, { error: 'Failed to send email. Please try again later.' }));
+    return callback(null, buildResponse(500, { error: 'Failed to send email. Please try again later.' }, origin));
   }
 };

@@ -25,10 +25,22 @@ jobs:
           npm run test:run
           npm run build
   deployment:
-    if: ${{ github.actor != 'dependabot[bot]' }}
+    # Pushes to main only: the role below trusts main and nothing else, and pull requests must
+    # never deploy to production.
+    if: ${{ github.event_name == 'push' && github.actor != 'dependabot[bot]' }}
     name: Deploy to S3
     needs: [build]
+    # One deploy at a time, queued rather than cancelled: an older run's sync --delete finishing
+    # after a newer one would leave the site stale.
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
     runs-on: ubuntu-22.04
+    # Assumes portfolio-github-deploy (bates-solutions monorepo, infra/personal) through GitHub's
+    # OIDC token instead of long-lived access keys.
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -40,19 +52,15 @@ jobs:
         run: echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
       - name: Build webapp
         run: npm run build
+      - uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-east-1
+      # sync --delete replaces the old rm-then-copy, so the site is never briefly empty.
       - name: Deploy to S3
         run: |
-          export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY
-          export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-          export AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID
-          export AWS_REGION=$AWS_REGION
-          aws s3 rm $AWS_BUCKET --recursive
-          aws s3 cp ./dist/ $AWS_BUCKET --recursive
-          aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
+          aws s3 sync ./dist/ "$AWS_BUCKET" --delete
+          aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "/*"
     env:
-      AWS_ACCESS_KEY: ${{ vars.AWS_ACCESS_KEY }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_ACCOUNT_ID: ${{vars.AWS_ACCOUNT_ID }}
-      AWS_REGION: ${{vars.AWS_REGION }}
-      AWS_BUCKET: ${{vars.AWS_BUCKET }}
-      DISTRIBUTION_ID: ${{vars.distribution_id}}
+      AWS_BUCKET: ${{ vars.AWS_BUCKET }}
+      DISTRIBUTION_ID: ${{ vars.DISTRIBUTION_ID }}

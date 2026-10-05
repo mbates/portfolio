@@ -1,14 +1,14 @@
 # Mike Bates Portfolio
 
 [![Build & Deploy](https://github.com/mbates/portfolio/actions/workflows/ci.deploy.yml/badge.svg)](https://github.com/mbates/portfolio/actions/workflows/ci.deploy.yml)
-[![Tests](https://img.shields.io/badge/tests-44%20passing-brightgreen)](https://github.com/mbates/portfolio)
+[![Tests](https://img.shields.io/badge/tests-52%20passing-brightgreen)](https://github.com/mbates/portfolio)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=white)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-7-646cff?logo=vite&logoColor=white)](https://vite.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Personal portfolio website for [bates-solutions.com](https://bates-solutions.com), built with React and deployed to AWS.
+Personal portfolio website at [mike.bates-solutions.com](https://mike.bates-solutions.com), built with React and deployed to AWS.
 
 ## Tech Stack
 
@@ -80,19 +80,18 @@ If you want to use this as a template for your own portfolio:
 
 4. **Configure CI/CD** (GitHub Actions):
 
-   Add these secrets/variables in your repo settings:
+   The deploy job assumes an IAM role through GitHub's OIDC token, so no AWS keys are stored.
+   The role, `portfolio-github-deploy`, lives in the bates-solutions monorepo's `infra/personal/`
+   and trusts only this repo's `main`. Add these in your repo settings:
 
    | Type | Name | Description |
    |------|------|-------------|
-   | Secret | `AWS_SECRET_ACCESS_KEY` | AWS secret key |
    | Secret | `VITE_API_URL` | Your API Gateway endpoint |
-   | Variable | `AWS_ACCESS_KEY` | AWS access key ID |
-   | Variable | `AWS_ACCOUNT_ID` | Your AWS account ID |
-   | Variable | `AWS_REGION` | e.g., `us-east-1` |
+   | Variable | `AWS_DEPLOY_ROLE_ARN` | The deploy role's ARN (`npm run infra:personal:output -- -raw deploy_role_arn` in the monorepo) |
    | Variable | `AWS_BUCKET` | S3 bucket URL (s3://...) |
-   | Variable | `distribution_id` | CloudFront distribution ID |
+   | Variable | `DISTRIBUTION_ID` | CloudFront distribution ID |
 
-5. **Push to `main`** to trigger deployment
+5. **Push to `main`** to trigger deployment (pull requests build and test but never deploy)
 
 ## Testing
 
