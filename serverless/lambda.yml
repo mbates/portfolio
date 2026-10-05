@@ -22,13 +22,16 @@ functions:
     environment:
       RECIPIENT_EMAIL: mbates@bates-solutions.com
       SENDER_EMAIL: portfolio@bates-solutions.com
-      CORS_ORIGIN: https://bates-solutions.com
+      # Both hostnames until the company site takes the apex; email.mjs echoes the matching one.
+      CORS_ORIGIN: https://mike.bates-solutions.com,https://bates-solutions.com
     events:
       - http:
           path: portfolio-message
           method: post
           cors:
-            origin: 'https://bates-solutions.com'
+            origins:
+              - 'https://mike.bates-solutions.com'
+              - 'https://bates-solutions.com'
             headers:
               - Content-Type
             allowCredentials: false

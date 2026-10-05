@@ -200,7 +200,7 @@ describe('buildResponse', () => {
 
   it('includes CORS headers', () => {
     const response = buildResponse(200, { message: 'OK' });
-    expect(response.headers['Access-Control-Allow-Origin']).toBe('https://bates-solutions.com');
+    expect(response.headers['Access-Control-Allow-Origin']).toBe('https://mike.bates-solutions.com');
     expect(response.headers['Access-Control-Allow-Methods']).toBe('OPTIONS,POST');
     expect(response.headers['Access-Control-Allow-Headers']).toBe('Content-Type');
   });
@@ -209,6 +209,27 @@ describe('buildResponse', () => {
     process.env.CORS_ORIGIN = 'https://custom-domain.com';
     const response = buildResponse(200, { message: 'OK' });
     expect(response.headers['Access-Control-Allow-Origin']).toBe('https://custom-domain.com');
+  });
+
+  it('echoes an allowed request origin, for both hostnames', () => {
+    for (const origin of ['https://mike.bates-solutions.com', 'https://bates-solutions.com']) {
+      expect(buildResponse(200, {}, origin).headers['Access-Control-Allow-Origin']).toBe(origin);
+    }
+  });
+
+  it('answers an unknown origin with the first allowed one, never echoing it', () => {
+    const response = buildResponse(200, {}, 'https://evil.example');
+    expect(response.headers['Access-Control-Allow-Origin']).toBe('https://mike.bates-solutions.com');
+  });
+
+  it('accepts a comma-separated CORS_ORIGIN list', () => {
+    process.env.CORS_ORIGIN = 'https://a.example, https://b.example';
+    expect(buildResponse(200, {}, 'https://b.example').headers['Access-Control-Allow-Origin']).toBe('https://b.example');
+    expect(buildResponse(200, {}).headers['Access-Control-Allow-Origin']).toBe('https://a.example');
+  });
+
+  it('varies on Origin', () => {
+    expect(buildResponse(200, {}).headers.Vary).toBe('Origin');
   });
 
   it('stringifies body to JSON', () => {

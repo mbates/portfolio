@@ -1,6 +1,6 @@
-# robots.txt for bates-solutions.com
+# robots.txt for mike.bates-solutions.com
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://bates-solutions.com/sitemap.xml
+Sitemap: https://mike.bates-solutions.com/sitemap.xml

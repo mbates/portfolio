@@ -20,7 +20,7 @@ const Terminal: React.FC<TerminalProps> = ({
   );
   const prompt = (
     <span>
-      <span className='text-gray-400'>https://bates-solutions.com</span> &gt;
+      <span className='text-gray-400'>mike@bates:~$</span>
     </span>
   );
   const projectList = projects.map((p) => {
@@ -43,12 +43,6 @@ const Terminal: React.FC<TerminalProps> = ({
     },
     git: () => {
       window.open('https://github.com/mbates', '_blank')?.focus();
-    },
-    linkedin: () => {
-      window.open(
-        'https://www.linkedin.com/in/m-bates-baab51333/',
-        '_blank'
-      )?.focus();
     },
     ls: <div>{projectList}</div>,
     send: (message: string) => {
@@ -112,9 +106,6 @@ const Terminal: React.FC<TerminalProps> = ({
         <br />
         git
         <span className='text-white'> open my GitHub profile</span>
-        <br />
-        linkedin
-        <span className='text-white'> open my LinkedIn profile</span>
         <br />
         contact
         <span className='text-white'> open the contact form</span>
