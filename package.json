@@ -11,10 +11,10 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "deploy:gateway": "serverless --aws-profile=${AWS_PROFILE:-mike} --config ./serverless/gateway.yml deploy",
-    "remove:gateway": "serverless --aws-profile=${AWS_PROFILE:-mike} --config ./serverless/gateway.yml remove",
-    "deploy:lambda": "serverless --aws-profile=${AWS_PROFILE:-mike} --config ./serverless/lambda.yml deploy",
-    "remove:lambda": "serverless --aws-profile=${AWS_PROFILE:-mike} --config ./serverless/lambda.yml remove"
+    "deploy:gateway": "serverless --aws-profile=mike --config ./serverless/gateway.yml deploy",
+    "remove:gateway": "serverless --aws-profile=mike --config ./serverless/gateway.yml remove",
+    "deploy:lambda": "serverless --aws-profile=mike --config ./serverless/lambda.yml deploy",
+    "remove:lambda": "serverless --aws-profile=mike --config ./serverless/lambda.yml remove"
   },
   "dependencies": {
     "@tailwindcss/vite": "4.1.11",

@@ -259,6 +259,16 @@ describe('handler', () => {
     vi.restoreAllMocks();
   });
 
+  it.each([
+    ['origin', { origin: 'https://bates-solutions.com' }, 'https://bates-solutions.com'],
+    ['Origin', { Origin: 'https://bates-solutions.com' }, 'https://bates-solutions.com'],
+    ['an unknown origin', { origin: 'https://evil.example' }, 'https://mike.bates-solutions.com'],
+    ['null headers', null, 'https://mike.bates-solutions.com'],
+  ])('answers with the right allowed origin given %s', async (_label, headers, expected) => {
+    await handler({ body: null, headers }, {}, mockCallback);
+    expect(mockCallback.mock.calls[0][1].headers['Access-Control-Allow-Origin']).toBe(expected);
+  });
+
   it('returns 400 for empty body', async () => {
     await handler({ body: null }, {}, mockCallback);
 
