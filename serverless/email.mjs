@@ -55,9 +55,8 @@ export const validateInput = (body) => {
 
 // The sites allowed to post, comma-separated in CORS_ORIGIN. The response names the request's
 // own origin when it's one of them (a browser accepts only an exact match), else the first.
-// The site answers on bates-solutions.com and mike.bates-solutions.com until the company site
-// takes the apex.
-const DEFAULT_ORIGINS = 'https://mike.bates-solutions.com,https://bates-solutions.com';
+// The apex is the company site's since 2026-10-05, with its own contact endpoint.
+const DEFAULT_ORIGINS = 'https://mike.bates-solutions.com';
 
 export const allowedOrigin = (requestOrigin) => {
   const origins = (process.env.CORS_ORIGIN || DEFAULT_ORIGINS).split(',').map((o) => o.trim());
