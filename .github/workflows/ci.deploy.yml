@@ -56,10 +56,14 @@ jobs:
         with:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           aws-region: us-east-1
-      # sync --delete replaces the old rm-then-copy, so the site is never briefly empty.
+      # Vite's hashed files in assets/ never change, so browsers keep them for a year; everything
+      # else revalidates on every request. New assets go up first, then the pages that use them,
+      # then old assets are removed, so the site is never briefly broken or empty.
       - name: Deploy to S3
         run: |
-          aws s3 sync ./dist/ "$AWS_BUCKET" --delete
+          aws s3 sync ./dist/assets "$AWS_BUCKET/assets" --cache-control "public, max-age=31536000, immutable"
+          aws s3 sync ./dist/ "$AWS_BUCKET" --delete --exclude "assets/*" --cache-control "public, max-age=0, must-revalidate"
+          aws s3 sync ./dist/assets "$AWS_BUCKET/assets" --delete --cache-control "public, max-age=31536000, immutable"
           aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "/*"
     env:
       AWS_BUCKET: ${{ vars.AWS_BUCKET }}
