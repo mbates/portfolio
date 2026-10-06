@@ -1,5 +1,5 @@
 import './HomePage.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Terminal from '../components/Terminal';
 import About from '../components/About';
 import Project from '../components/Project';
@@ -15,13 +15,27 @@ export default function HomePage() {
   const [message, setMessage] = useState('');
   const [focus, setFocus] = useState(1);
 
-  const clearProject = () => {
+  const clearProject = useCallback(() => {
     setFocus(Math.random());
     setProject('');
     setContent('');
     setMessage('');
-  };
+  }, []);
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  // react-terminal calls preventDefault on every keydown at the document, so the dialog never
+  // sees Escape. A capture listener on window runs first and closes it.
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && dialogRef.current?.open) {
+        event.stopPropagation();
+        clearProject();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown, true);
+    return () => window.removeEventListener('keydown', onKeyDown, true);
+  }, [clearProject]);
+
   useEffect(() => {
     if (dialogRef.current?.open && project === '' && content === '') {
       dialogRef.current?.close();
@@ -53,6 +67,15 @@ export default function HomePage() {
         ref={dialogRef}
         className='animated-dialog rounded-lg w-full h-200 max-w-240 mt-10 justify-self-center shadow-lg backdrop:bg-black/50 backdrop:backdrop-blur-sm'
         aria-label='Project details'
+        // A click on the backdrop lands on the dialog itself; one inside lands on its content.
+        onClick={(event) => {
+          if (event.target === event.currentTarget) clearProject();
+        }}
+        // The browser's own close (Escape when nothing intercepts it) must clear the state too.
+        onCancel={(event) => {
+          event.preventDefault();
+          clearProject();
+        }}
       >
         <div>
           <div className='w-full rounded-t-lg bg-gray-200 flex justify-start items-center space-x-1.5 px-3'>
