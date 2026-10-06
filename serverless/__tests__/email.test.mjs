@@ -211,10 +211,14 @@ describe('buildResponse', () => {
     expect(response.headers['Access-Control-Allow-Origin']).toBe('https://custom-domain.com');
   });
 
-  it('echoes an allowed request origin, for both hostnames', () => {
-    for (const origin of ['https://mike.bates-solutions.com', 'https://bates-solutions.com']) {
-      expect(buildResponse(200, {}, origin).headers['Access-Control-Allow-Origin']).toBe(origin);
-    }
+  it('echoes the allowed request origin', () => {
+    const origin = 'https://mike.bates-solutions.com';
+    expect(buildResponse(200, {}, origin).headers['Access-Control-Allow-Origin']).toBe(origin);
+  });
+
+  it('no longer allows the apex, which is the company site', () => {
+    const response = buildResponse(200, {}, 'https://bates-solutions.com');
+    expect(response.headers['Access-Control-Allow-Origin']).toBe('https://mike.bates-solutions.com');
   });
 
   it('answers an unknown origin with the first allowed one, never echoing it', () => {
@@ -260,8 +264,9 @@ describe('handler', () => {
   });
 
   it.each([
-    ['origin', { origin: 'https://bates-solutions.com' }, 'https://bates-solutions.com'],
-    ['Origin', { Origin: 'https://bates-solutions.com' }, 'https://bates-solutions.com'],
+    ['origin', { origin: 'https://mike.bates-solutions.com' }, 'https://mike.bates-solutions.com'],
+    ['Origin', { Origin: 'https://mike.bates-solutions.com' }, 'https://mike.bates-solutions.com'],
+    ['the apex', { origin: 'https://bates-solutions.com' }, 'https://mike.bates-solutions.com'],
     ['an unknown origin', { origin: 'https://evil.example' }, 'https://mike.bates-solutions.com'],
     ['null headers', null, 'https://mike.bates-solutions.com'],
   ])('answers with the right allowed origin given %s', async (_label, headers, expected) => {
