@@ -3,7 +3,13 @@ import { SSMClient, GetParameterCommand } from '@aws-sdk/client-ssm';
 
 const REGION = 'us-east-1';
 const sesClient = new SESClient({ region: REGION });
-const ssmClient = new SSMClient({ region: REGION });
+// A stalled SSM read fails fast instead of running to the Lambda's timeout, where API Gateway would
+// answer without CORS headers. Same settings as the company site's contact Lambda.
+const ssmClient = new SSMClient({
+  region: REGION,
+  maxAttempts: 2,
+  requestHandler: { connectionTimeout: 1000, requestTimeout: 2000 },
+});
 
 const SITEVERIFY = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
@@ -28,6 +34,8 @@ const turnstileSecret = () => {
 // True when Cloudflare accepts the token and it was issued on this site: the widget is shared
 // with the company site, so a token minted there mustn't be replayable here.
 export const verifyTurnstile = async (token, ip) => {
+  // Without it every valid token would be refused as a bot; a broken setup must read as one.
+  if (!process.env.TURNSTILE_HOSTNAME) throw new Error('TURNSTILE_HOSTNAME is not set');
   if (typeof token !== 'string' || token === '') return false;
   const res = await fetch(SITEVERIFY, {
     method: 'POST',

@@ -441,6 +441,33 @@ describe('handler', () => {
       expect(mockSend).not.toHaveBeenCalled();
     });
 
+    it('answers 502 when TURNSTILE_HOSTNAME is unset, rather than refusing every visitor as a bot', async () => {
+      delete process.env.TURNSTILE_HOSTNAME;
+      await send({ turnstileToken: 'token' });
+      expect(status()).toBe(502);
+      expect(mockSend).not.toHaveBeenCalled();
+    });
+
+    it('answers 502 when the secret cannot be read, and reads it again on the next request', async () => {
+      // A fresh module, so the secret isn't already cached from an earlier test.
+      vi.resetModules();
+      const fresh = await import('../email.mjs');
+      mockSsmSend.mockReset();
+      mockSsmSend
+        .mockRejectedValueOnce(new Error('ssm unavailable'))
+        .mockResolvedValue({ Parameter: { Value: 'test-secret' } });
+      const body = JSON.stringify({ name: 'John Doe', email: 'john@example.com', message: 'Hi', turnstileToken: 'token' });
+
+      await fresh.handler({ body }, {}, mockCallback);
+      expect(mockCallback.mock.calls[0][1].statusCode).toBe(502);
+      expect(fetch).not.toHaveBeenCalled();
+
+      await fresh.handler({ body }, {}, mockCallback);
+      expect(mockCallback.mock.calls[1][1].statusCode).toBe(200);
+      expect(mockSsmSend).toHaveBeenCalledTimes(2);
+      expect(mockSend).toHaveBeenCalledTimes(1);
+    });
+
     it.each([
       ['a misconfigured secret', siteverify({ success: false, 'error-codes': ['invalid-input-secret'] })],
       ['Cloudflare failing', siteverify({}, 500)],

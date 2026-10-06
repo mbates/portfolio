@@ -14,13 +14,15 @@ vi.mock('axios', () => ({
 // A fake Turnstile: by default it passes the visitor straight away, as it does for most people.
 const turnstile = vi.hoisted(() => ({
   autoPass: true,
+  failLoad: false,
   render: vi.fn(),
   reset: vi.fn(),
   remove: vi.fn(),
 }));
 vi.mock('../../lib/turnstile', () => ({
   TURNSTILE_SITE_KEY: 'site-key',
-  loadTurnstile: () => Promise.resolve(turnstile),
+  loadTurnstile: () =>
+    turnstile.failLoad ? Promise.reject(new Error('Turnstile did not load')) : Promise.resolve(turnstile),
 }));
 
 import axios from 'axios';
@@ -36,6 +38,7 @@ describe('Contact', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     turnstile.autoPass = true;
+    turnstile.failLoad = false;
     turnstile.render.mockImplementation((_el: HTMLElement, options: { callback: (t: string) => void }) => {
       if (turnstile.autoPass) options.callback('turnstile-token');
       return 'widget-1';
@@ -71,6 +74,29 @@ describe('Contact', () => {
     await fillAndSend(user);
 
     expect(await screen.findByText(/wait for the spam check/i)).toBeInTheDocument();
+    expect(axios.post).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['Cloudflare refuses the widget', 'error'],
+    ['the script fails to load', 'load'],
+  ])('says the spam check failed, not "wait", when %s', async (_label, how) => {
+    const user = userEvent.setup();
+    turnstile.autoPass = false;
+    if (how === 'error') {
+      turnstile.render.mockImplementation((_el: HTMLElement, options: { 'error-callback': () => void }) => {
+        options['error-callback']();
+        return 'widget-1';
+      });
+    } else {
+      turnstile.failLoad = true;
+    }
+    render(<Contact message="" />);
+
+    expect(await screen.findByText(/spam check failed/i)).toBeInTheDocument();
+    await fillAndSend(user);
+    expect(screen.getByText(/spam check failed/i)).toBeInTheDocument();
+    expect(screen.queryByText(/wait for the spam check/i)).not.toBeInTheDocument();
     expect(axios.post).not.toHaveBeenCalled();
   });
 

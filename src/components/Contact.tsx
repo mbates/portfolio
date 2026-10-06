@@ -11,6 +11,8 @@ type Inputs = {
   message: string;
 };
 
+const WIDGET_FAILED = 'The spam check failed. Please reload the page and try again.';
+
 interface ContactProps {
   message: string;
 }
@@ -20,6 +22,8 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
   const [token, setToken] = useState('');
+  // Set when no token can arrive: the script didn't load, or Cloudflare refused the widget.
+  const [widgetFailed, setWidgetFailed] = useState(false);
   const widget = useRef<HTMLDivElement>(null);
   const turnstile = useRef<{ api: TurnstileApi; id: string } | null>(null);
 
@@ -34,12 +38,18 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
           appearance: 'interaction-only',
           callback: setToken,
           'expired-callback': () => setToken(''),
-          'error-callback': () => setToken(''),
+          'error-callback': () => {
+            setToken('');
+            setWidgetFailed(true);
+            setError(WIDGET_FAILED);
+          },
         });
         turnstile.current = { api, id };
       })
       .catch(() => {
-        if (!cancelled) setError('The spam check failed to load. Please reload the page.');
+        if (cancelled) return;
+        setWidgetFailed(true);
+        setError(WIDGET_FAILED);
       });
     return () => {
       cancelled = true;
@@ -51,6 +61,7 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
   // A token is good for one send; get a fresh one after each attempt.
   const resetTurnstile = () => {
     setToken('');
+    setWidgetFailed(false);
     if (turnstile.current) turnstile.current.api.reset(turnstile.current.id);
   };
 
@@ -63,7 +74,7 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (!token) {
-      setError('Please wait for the spam check to finish, then send again.');
+      setError(widgetFailed ? WIDGET_FAILED : 'Please wait for the spam check to finish, then send again.');
       return;
     }
     try {
