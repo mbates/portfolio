@@ -1,28 +1,37 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import About from '../About';
+import { about } from '../../content/about';
 
 describe('About', () => {
-  it('renders about content', () => {
-    render(
-      <BrowserRouter>
-        <About />
-      </BrowserRouter>
-    );
-
-    expect(screen.getByText(/custom software development/i)).toBeInTheDocument();
+  it('renders every paragraph of the About copy, in the first person', () => {
+    render(<About />);
+    for (const paragraph of about) {
+      expect(screen.getByText(paragraph)).toBeInTheDocument();
+    }
+    expect(screen.getByText(/full stack engineer in Vancouver/i)).toBeInTheDocument();
   });
 
-  it('contains technology links', () => {
-    render(
-      <BrowserRouter>
-        <About />
-      </BrowserRouter>
-    );
+  it('no longer speaks for the company', () => {
+    const { container } = render(<About />);
+    expect(container.textContent).not.toMatch(/\bwe\b|\bour\b|Bates Solutions has/i);
+  });
 
-    expect(screen.getByRole('link', { name: /react/i })).toBeInTheDocument();
-    // Angular appears multiple times in About page
-    expect(screen.getAllByRole('link', { name: /angular/i }).length).toBeGreaterThan(0);
+  it('points to the contact command', () => {
+    render(<About />);
+    expect(screen.getByText('contact')).toBeInTheDocument();
+  });
+});
+
+describe('static <main>', async () => {
+  const { staticMain } = await import('../../content/staticMain');
+  const html = staticMain();
+
+  it('carries the About copy and every project, escaped', () => {
+    expect(html).toContain('<main class="sr-only">');
+    expect(html).toContain("Guy's and St Thomas'");
+    expect(html).toContain('<strong>Mandi\'s Mickles</strong>');
+    expect(html).toContain('<strong>OpsKwan</strong>');
+    expect(html).not.toMatch(/<(?!\/?(main|h1|h2|p|ul|li|strong|a)\b)/);
   });
 });
