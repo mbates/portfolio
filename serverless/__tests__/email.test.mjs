@@ -15,8 +15,24 @@ vi.mock('@aws-sdk/client-ses', () => {
   };
 });
 
-// Now import the module after the mock is set up
+const mockSsmSend = vi.fn();
+vi.mock('@aws-sdk/client-ssm', () => ({
+  SSMClient: class {
+    send = mockSsmSend;
+  },
+  GetParameterCommand: class {
+    constructor(params) {
+      this.params = params;
+    }
+  },
+}));
+
+// Now import the module after the mocks are set up
 const { escapeHtml, validateInput, buildResponse, handler } = await import('../email.mjs');
+
+// Cloudflare's siteverify answer for the next request.
+const siteverify = (answer, status = 200) =>
+  vi.fn().mockResolvedValue({ ok: status === 200, status, json: async () => answer });
 
 describe('escapeHtml', () => {
   it('escapes HTML special characters', () => {
@@ -254,6 +270,11 @@ describe('handler', () => {
     mockCallback = vi.fn();
     mockSend.mockReset();
     mockSend.mockResolvedValue({});
+    mockSsmSend.mockReset();
+    mockSsmSend.mockResolvedValue({ Parameter: { Value: 'test-secret' } });
+    process.env.TURNSTILE_SECRET_PARAM = '/bates-solutions/contact/turnstile-secret';
+    process.env.TURNSTILE_HOSTNAME = 'mike.bates-solutions.com';
+    vi.stubGlobal('fetch', siteverify({ success: true, hostname: 'mike.bates-solutions.com' }));
     vi.spyOn(console, 'warn').mockImplementation(() => {});
     vi.spyOn(console, 'info').mockImplementation(() => {});
     vi.spyOn(console, 'error').mockImplementation(() => {});
@@ -261,6 +282,7 @@ describe('handler', () => {
 
   afterEach(() => {
     vi.restoreAllMocks();
+    vi.unstubAllGlobals();
   });
 
   it.each([
@@ -328,6 +350,7 @@ describe('handler', () => {
           name: 'John Doe',
           email: 'john@example.com',
           message: 'Hello world',
+          turnstileToken: 'token',
         }),
       },
       {},
@@ -354,6 +377,7 @@ describe('handler', () => {
           name: 'John Doe',
           email: 'john@example.com',
           message: 'Hello world',
+          turnstileToken: 'token',
         }),
       },
       {},
@@ -369,6 +393,90 @@ describe('handler', () => {
     const response = mockCallback.mock.calls[0][1];
     expect(JSON.parse(response.body)).toEqual({
       error: 'Failed to send email. Please try again later.',
+    });
+  });
+
+  describe('Turnstile', () => {
+    const send = (extra = {}, requestContext = { identity: { sourceIp: '203.0.113.7' } }) =>
+      handler(
+        {
+          body: JSON.stringify({ name: 'John Doe', email: 'john@example.com', message: 'Hi', ...extra }),
+          requestContext,
+        },
+        {},
+        mockCallback
+      );
+    const status = () => mockCallback.mock.calls[0][1].statusCode;
+
+    it('checks the token with Cloudflare, using the SSM secret and the visitor IP', async () => {
+      await send({ turnstileToken: 'token' });
+      expect(status()).toBe(200);
+      const [url, init] = fetch.mock.calls[0];
+      expect(url).toBe('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+      expect(Object.fromEntries(init.body)).toEqual({
+        secret: 'test-secret',
+        response: 'token',
+        remoteip: '203.0.113.7',
+      });
+    });
+
+    it('refuses a request without a token, without asking Cloudflare', async () => {
+      await send();
+      expect(status()).toBe(403);
+      expect(fetch).not.toHaveBeenCalled();
+      expect(mockSend).not.toHaveBeenCalled();
+    });
+
+    it('refuses a token Cloudflare rejects', async () => {
+      vi.stubGlobal('fetch', siteverify({ success: false, 'error-codes': ['invalid-input-response'] }));
+      await send({ turnstileToken: 'forged' });
+      expect(status()).toBe(403);
+      expect(mockSend).not.toHaveBeenCalled();
+    });
+
+    it('refuses a valid token issued on another site using the same widget', async () => {
+      vi.stubGlobal('fetch', siteverify({ success: true, hostname: 'bates-solutions.com' }));
+      await send({ turnstileToken: 'token' });
+      expect(status()).toBe(403);
+      expect(mockSend).not.toHaveBeenCalled();
+    });
+
+    it('answers 502 when TURNSTILE_HOSTNAME is unset, rather than refusing every visitor as a bot', async () => {
+      delete process.env.TURNSTILE_HOSTNAME;
+      await send({ turnstileToken: 'token' });
+      expect(status()).toBe(502);
+      expect(mockSend).not.toHaveBeenCalled();
+    });
+
+    it('answers 502 when the secret cannot be read, and reads it again on the next request', async () => {
+      // A fresh module, so the secret isn't already cached from an earlier test.
+      vi.resetModules();
+      const fresh = await import('../email.mjs');
+      mockSsmSend.mockReset();
+      mockSsmSend
+        .mockRejectedValueOnce(new Error('ssm unavailable'))
+        .mockResolvedValue({ Parameter: { Value: 'test-secret' } });
+      const body = JSON.stringify({ name: 'John Doe', email: 'john@example.com', message: 'Hi', turnstileToken: 'token' });
+
+      await fresh.handler({ body }, {}, mockCallback);
+      expect(mockCallback.mock.calls[0][1].statusCode).toBe(502);
+      expect(fetch).not.toHaveBeenCalled();
+
+      await fresh.handler({ body }, {}, mockCallback);
+      expect(mockCallback.mock.calls[1][1].statusCode).toBe(200);
+      expect(mockSsmSend).toHaveBeenCalledTimes(2);
+      expect(mockSend).toHaveBeenCalledTimes(1);
+    });
+
+    it.each([
+      ['a misconfigured secret', siteverify({ success: false, 'error-codes': ['invalid-input-secret'] })],
+      ['Cloudflare failing', siteverify({}, 500)],
+      ['Cloudflare unreachable', vi.fn().mockRejectedValue(new TypeError('fetch failed'))],
+    ])('answers 502, not 403, for %s, and sends nothing', async (_label, fake) => {
+      vi.stubGlobal('fetch', fake);
+      await send({ turnstileToken: 'token' });
+      expect(status()).toBe(502);
+      expect(mockSend).not.toHaveBeenCalled();
     });
   });
 });

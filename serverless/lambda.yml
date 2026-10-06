@@ -9,6 +9,19 @@ provider:
       Action:
         - ses:SendEmail
       Resource: '*'
+    # The Turnstile secret, shared with the company site's contact form (bates-solutions infra/site).
+    - Effect: Allow
+      Action:
+        - ssm:GetParameter
+      Resource: arn:aws:ssm:us-east-1:${aws:accountId}:parameter/bates-solutions/contact/turnstile-secret
+    # It's a SecureString under the account's default aws/ssm key, decrypted only through SSM.
+    - Effect: Allow
+      Action:
+        - kms:Decrypt
+      Resource: '*'
+      Condition:
+        StringEquals:
+          kms:ViaService: ssm.us-east-1.amazonaws.com
   apiGateway:
     restApiId:
       'Fn::ImportValue': BSPortfolioGW-restApiId
@@ -24,6 +37,9 @@ functions:
       SENDER_EMAIL: portfolio@bates-solutions.com
       # Comma-separated; email.mjs echoes the matching one. The apex is the company site's.
       CORS_ORIGIN: https://mike.bates-solutions.com
+      TURNSTILE_SECRET_PARAM: /bates-solutions/contact/turnstile-secret
+      # Tokens must have been issued here, not on another site using the same widget.
+      TURNSTILE_HOSTNAME: mike.bates-solutions.com
     events:
       - http:
           path: portfolio-message
