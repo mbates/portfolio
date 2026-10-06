@@ -7,7 +7,7 @@ export const about: string[] = [
   "I'm a full stack engineer in Vancouver. I've been shipping production software since 2000: first in the UK, where I built out an NHS medical record system at hospitals including Guy's and St Thomas', then in Canada from 2003.",
   'From 2009 to 2024 I was Director of Development at OpsKwan, the logistics platform Zimmer Biomet used for over 40% of Canadian hospitals. From 2013 I was also the founding engineer at Casechek, and scaled its HIPAA-regulated surgical device procurement platform from its first customer to 200+ US hospitals.',
   "Today I work through my consultancy, Bates Solutions. I'm lead backend engineer on Ocean Wise's Whale Report platform and a senior engineer on Well-Plated's clinical apps. I also build my own products: getMickled, a multi-tenant commerce platform; Zeepler, a label-printing API; and the JB Karting race platform.",
-  "Most of my work is TypeScript on AWS, with Terraform, React and React Native. At Ocean Wise I standardised the team's approach to AI-assisted development across Claude Code and Cursor.",
+  "Most of my work is TypeScript on AWS, with Terraform, React and React Native. At Ocean Wise I built the team's shared AI workflows: one version-controlled set of skills, commands and playbooks that runs in both Claude Code and Cursor.",
 ];
 
 // One line per project the terminal's `show` command opens.
