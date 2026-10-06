@@ -4,3 +4,10 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+    # One PR a week for every minor and patch bump, merged by hand once CI passes. A major gets
+    # its own PR, since it can need code changes (eslint 10, TypeScript 7).
+    groups:
+      minor-and-patch:
+        update-types:
+          - 'minor'
+          - 'patch'
