@@ -1,7 +1,46 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+import { SSMClient, GetParameterCommand } from '@aws-sdk/client-ssm';
 
 const REGION = 'us-east-1';
 const sesClient = new SESClient({ region: REGION });
+const ssmClient = new SSMClient({ region: REGION });
+
+const SITEVERIFY = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+
+// Error codes that mean the visitor's token is bad. Anything else (a wrong secret, Cloudflare
+// having trouble) is our problem, so it throws rather than reading as a bot.
+const VISITOR_CODES = new Set(['missing-input-response', 'invalid-input-response', 'timeout-or-duplicate']);
+
+// The Turnstile secret is shared with the company site's contact form (SSM SecureString). Read once
+// per container; a failed read is retried on the next request.
+let secretPromise;
+const turnstileSecret = () => {
+  secretPromise ??= ssmClient
+    .send(new GetParameterCommand({ Name: process.env.TURNSTILE_SECRET_PARAM, WithDecryption: true }))
+    .then((out) => out.Parameter.Value)
+    .catch((err) => {
+      secretPromise = undefined;
+      throw err;
+    });
+  return secretPromise;
+};
+
+// True when Cloudflare accepts the token and it was issued on this site: the widget is shared
+// with the company site, so a token minted there mustn't be replayable here.
+export const verifyTurnstile = async (token, ip) => {
+  if (typeof token !== 'string' || token === '') return false;
+  const res = await fetch(SITEVERIFY, {
+    method: 'POST',
+    body: new URLSearchParams({ secret: await turnstileSecret(), response: token, remoteip: ip }),
+    signal: AbortSignal.timeout(3000),
+  });
+  if (!res.ok) throw new Error(`Turnstile siteverify answered ${res.status}`);
+  const out = await res.json();
+  if (out.success === true) return out.hostname === process.env.TURNSTILE_HOSTNAME;
+  const codes = out['error-codes'] ?? [];
+  if (codes.some((c) => !VISITOR_CODES.has(c))) throw new Error(`Turnstile siteverify: ${codes.join(', ')}`);
+  return false;
+};
 
 // Simple HTML escaping to prevent injection
 export const escapeHtml = (text) => {
@@ -102,6 +141,19 @@ export const handler = async (event, _context, callback) => {
     if (!validation.valid) {
       console.warn('Validation failed:', validation.errors);
       return callback(null, buildResponse(400, { error: 'Validation failed', details: validation.errors }, origin));
+    }
+
+    // Cloudflare Turnstile: SES reputation is shared across the account, so no bot gets to send.
+    let human;
+    try {
+      human = await verifyTurnstile(body.turnstileToken, event.requestContext?.identity?.sourceIp ?? '');
+    } catch (verifyError) {
+      console.error('Turnstile check failed:', verifyError.message);
+      return callback(null, buildResponse(502, { error: 'Could not verify the request. Please try again later.' }, origin));
+    }
+    if (!human) {
+      console.warn('Turnstile rejected the request');
+      return callback(null, buildResponse(403, { error: 'Verification failed. Please try again.' }, origin));
     }
 
     // Sanitize and build email body

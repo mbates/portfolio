@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import { loadTurnstile, TURNSTILE_SITE_KEY, type TurnstileApi } from '../lib/turnstile';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Spinner from './Spinner';
 
@@ -18,6 +19,40 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+  const [token, setToken] = useState('');
+  const widget = useRef<HTMLDivElement>(null);
+  const turnstile = useRef<{ api: TurnstileApi; id: string } | null>(null);
+
+  // The Turnstile check shows itself only when Cloudflare wants an interaction.
+  useEffect(() => {
+    let cancelled = false;
+    loadTurnstile()
+      .then((api) => {
+        if (cancelled || !widget.current) return;
+        const id = api.render(widget.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          appearance: 'interaction-only',
+          callback: setToken,
+          'expired-callback': () => setToken(''),
+          'error-callback': () => setToken(''),
+        });
+        turnstile.current = { api, id };
+      })
+      .catch(() => {
+        if (!cancelled) setError('The spam check failed to load. Please reload the page.');
+      });
+    return () => {
+      cancelled = true;
+      if (turnstile.current) turnstile.current.api.remove(turnstile.current.id);
+      turnstile.current = null;
+    };
+  }, []);
+
+  // A token is good for one send; get a fresh one after each attempt.
+  const resetTurnstile = () => {
+    setToken('');
+    if (turnstile.current) turnstile.current.api.reset(turnstile.current.id);
+  };
 
   const {
     register,
@@ -27,21 +62,31 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    if (!token) {
+      setError('Please wait for the spam check to finish, then send again.');
+      return;
+    }
     try {
       setSending(true);
       setSent(false);
       setError('');
-      await axios.post(import.meta.env.VITE_API_URL, data);
+      await axios.post(import.meta.env.VITE_API_URL, { ...data, turnstileToken: token });
       setSending(false);
       setSent(true);
       reset();
     } catch (e: unknown) {
       setSending(false);
-      if (e instanceof Error) {
+      // The Lambda's own message ("Verification failed…") says more than axios's status line.
+      const serverError = axios.isAxiosError(e) ? e.response?.data?.error : undefined;
+      if (typeof serverError === 'string') {
+        setError(serverError);
+      } else if (e instanceof Error) {
         setError(e.message);
       } else {
         setError('An unexpected error occurred');
       }
+    } finally {
+      resetTurnstile();
     }
   };
 
@@ -125,6 +170,8 @@ const Contact: React.FC<ContactProps> = ({ message }) => {
             <span className='text-red-600'>This field is required</span>
           )}
         </div>
+
+        <div ref={widget} className='mb-4' />
 
         <div className='mb-4'>
           <button

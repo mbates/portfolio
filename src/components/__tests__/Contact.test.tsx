@@ -7,14 +7,93 @@ import Contact from '../Contact';
 vi.mock('axios', () => ({
   default: {
     post: vi.fn(),
+    isAxiosError: (e: unknown) => !!(e as { isAxiosError?: boolean })?.isAxiosError,
   },
+}));
+
+// A fake Turnstile: by default it passes the visitor straight away, as it does for most people.
+const turnstile = vi.hoisted(() => ({
+  autoPass: true,
+  render: vi.fn(),
+  reset: vi.fn(),
+  remove: vi.fn(),
+}));
+vi.mock('../../lib/turnstile', () => ({
+  TURNSTILE_SITE_KEY: 'site-key',
+  loadTurnstile: () => Promise.resolve(turnstile),
 }));
 
 import axios from 'axios';
 
+const fillAndSend = async (user: ReturnType<typeof userEvent.setup>) => {
+  await user.type(screen.getByLabelText(/name/i), 'John Doe');
+  await user.type(screen.getByLabelText(/email/i), 'john@example.com');
+  await user.type(screen.getByLabelText(/message/i), 'Test message');
+  await user.click(screen.getByRole('button', { name: /send/i }));
+};
+
 describe('Contact', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    turnstile.autoPass = true;
+    turnstile.render.mockImplementation((_el: HTMLElement, options: { callback: (t: string) => void }) => {
+      if (turnstile.autoPass) options.callback('turnstile-token');
+      return 'widget-1';
+    });
+  });
+
+  it('sends the Turnstile token with the message, then resets the widget for the next send', async () => {
+    const user = userEvent.setup();
+    vi.mocked(axios.post).mockResolvedValueOnce({ data: {} });
+    render(<Contact message="" />);
+    await waitFor(() => expect(turnstile.render).toHaveBeenCalled());
+    expect(turnstile.render.mock.calls[0][1]).toMatchObject({
+      sitekey: 'site-key',
+      appearance: 'interaction-only',
+    });
+
+    await fillAndSend(user);
+
+    await waitFor(() => expect(axios.post).toHaveBeenCalled());
+    expect(vi.mocked(axios.post).mock.calls[0][1]).toMatchObject({
+      name: 'John Doe',
+      turnstileToken: 'turnstile-token',
+    });
+    await waitFor(() => expect(turnstile.reset).toHaveBeenCalledWith('widget-1'));
+  });
+
+  it('does not send until Turnstile has passed', async () => {
+    const user = userEvent.setup();
+    turnstile.autoPass = false;
+    render(<Contact message="" />);
+    await waitFor(() => expect(turnstile.render).toHaveBeenCalled());
+
+    await fillAndSend(user);
+
+    expect(await screen.findByText(/wait for the spam check/i)).toBeInTheDocument();
+    expect(axios.post).not.toHaveBeenCalled();
+  });
+
+  it("shows the server's own error message", async () => {
+    const user = userEvent.setup();
+    vi.mocked(axios.post).mockRejectedValueOnce({
+      isAxiosError: true,
+      message: 'Request failed with status code 403',
+      response: { data: { error: 'Verification failed. Please try again.' } },
+    });
+    render(<Contact message="" />);
+    await waitFor(() => expect(turnstile.render).toHaveBeenCalled());
+
+    await fillAndSend(user);
+
+    expect(await screen.findByText(/verification failed\. please try again/i)).toBeInTheDocument();
+  });
+
+  it('removes the widget when the form closes', async () => {
+    const { unmount } = render(<Contact message="" />);
+    await waitFor(() => expect(turnstile.render).toHaveBeenCalled());
+    unmount();
+    expect(turnstile.remove).toHaveBeenCalledWith('widget-1');
   });
 
   it('renders contact form with all fields', () => {
@@ -61,6 +140,7 @@ describe('Contact', () => {
     vi.mocked(axios.post).mockResolvedValueOnce({ data: {} });
 
     render(<Contact message="" />);
+    await waitFor(() => expect(turnstile.render).toHaveBeenCalled());
 
     await user.type(screen.getByLabelText(/name/i), 'John Doe');
     await user.type(screen.getByLabelText(/email/i), 'john@example.com');
@@ -78,6 +158,7 @@ describe('Contact', () => {
     vi.mocked(axios.post).mockRejectedValueOnce(new Error('Network error'));
 
     render(<Contact message="" />);
+    await waitFor(() => expect(turnstile.render).toHaveBeenCalled());
 
     await user.type(screen.getByLabelText(/name/i), 'John Doe');
     await user.type(screen.getByLabelText(/email/i), 'john@example.com');
