@@ -44,6 +44,17 @@ describe('Project', () => {
     expect(screen.getByText(/consultancy and product studio/i)).toBeInTheDocument();
   });
 
+  it('renders JB Karting project', () => {
+    render(
+      <BrowserRouter>
+        <Project project="jbkarting" />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: 'JB Karting' })).toBeInTheDocument();
+    expect(screen.getByText(/sponsors want to see results/i)).toBeInTheDocument();
+  });
+
   it('shows message for unknown project', () => {
     render(
       <BrowserRouter>
