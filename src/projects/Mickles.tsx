@@ -1,138 +1,60 @@
-import { Link } from 'react-router-dom';
 import MandisMicklesLogo from '../assets/mandis-mickles-logo.png';
-import MicklesKithcenLogo from '../assets/mickles-kitchen-logo.png';
-import LotusLogo from '../assets/lotus-logo.png';
+import ProjectLayout from '../components/ProjectLayout';
 
-const Mickles: React.FC = () => {
-  return (
-    <div className='w-full p-3 pr-5'>
-      <Link
-        to='https://mandismickles.com'
-        className='float-right w-40'
-        target='_blank'
-      >
-        <img src={MandisMicklesLogo} alt="Mandi's Mickles logo" />
-      </Link>
-      <p className='my-5'>
-        Full-stack e-commerce platform for a Vancouver-based gourmet pickle business.
-        Built as an <strong>Nx monorepo</strong> with customer storefront, admin dashboard,
-        and serverless backend APIs.
+// Facts match the company case study (bates-solutions.com/work/getmickled) and the resume.
+const Mickles: React.FC = () => (
+  <ProjectLayout
+    logo={<img src={MandisMicklesLogo} className='w-32' alt='' />}
+    name='getMickled'
+    tagline="Founder and principal engineer, since 2019: a multi-tenant commerce platform, grown from Mandi's Mickles' store."
+    links={[
+      { label: 'getmickled.com', url: 'https://getmickled.com' },
+      { label: 'mandismickles.com', url: 'https://mandismickles.com', icon: MandisMicklesLogo },
+      { label: 'bisqueco.com', url: 'https://bisqueco.com' },
+      { label: 'Case study', url: 'https://bates-solutions.com/work/getmickled' },
+    ]}
+    metrics={['2 live storefronts', '7 apps on one platform', '19 Terraform modules', '1,106 merged PRs']}
+    overview={
+      <p>
+        Mandi&apos;s Mickles has sold online since 2019 on a store I built for it. In December 2025
+        I turned that store into <strong>getMickled</strong>, a platform where each business gets
+        its own storefront, admin site, data and payment and shipping accounts, from one code
+        base. Bisque &amp; Co became the second business on it in June 2026.
       </p>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        What I Built
-      </h2>
-
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 my-5'>
-        <div className='bg-gray-50 p-4 rounded-lg'>
-          <h3 className='font-semibold text-lg mb-2'>Customer Storefront</h3>
-          <ul className='list-disc pl-5 text-sm space-y-1'>
-            <li>Product catalog with real-time Square inventory</li>
-            <li>Shopping cart with Angular Signals state</li>
-            <li>Multi-step checkout with shipping calculation</li>
-            <li>Interactive market locator (Mapbox)</li>
-            <li>Server-side rendering for SEO</li>
-          </ul>
-        </div>
-        <div className='bg-gray-50 p-4 rounded-lg'>
-          <h3 className='font-semibold text-lg mb-2'>Admin Dashboard</h3>
-          <ul className='list-disc pl-5 text-sm space-y-1'>
-            <li>Cognito authentication with MFA</li>
-            <li>Customer management with Excel export</li>
-            <li>FAQ management with drag-and-drop</li>
-            <li>Inventory tracking and shipping config</li>
-            <li>User role management</li>
-          </ul>
-        </div>
-      </div>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Serverless Backend
-      </h2>
-      <p className='my-5'>
-        14 Lambda functions handling catalog sync, checkout processing, order confirmations,
-        and admin operations. SNS pub/sub for order notifications, DynamoDB for admin data.
-      </p>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Infrastructure as Code
-      </h2>
-      <p className='my-5'>
-        Complete AWS infrastructure managed with <strong>Terraform</strong> modules:
-        S3 + CloudFront hosting, API Gateway, Lambda, Cognito, DynamoDB, SNS, and Route53.
-        Separate dev/prod environments with GitHub Actions CI/CD using OIDC authentication.
-      </p>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Tech Stack
-      </h2>
-      <div className='grid grid-cols-2 md:grid-cols-3 gap-2 my-5 text-sm'>
-        <div>
-          <h4 className='font-semibold'>Frontend</h4>
-          <ul className='text-gray-600'>
-            <li>Angular 21</li>
-            <li>Angular Material</li>
-            <li>Tailwind + DaisyUI</li>
-            <li>RxJS + Signals</li>
-            <li>Mapbox GL</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className='font-semibold'>Backend</h4>
-          <ul className='text-gray-600'>
-            <li>Node.js 20 Lambda</li>
-            <li>Express</li>
-            <li>Square API</li>
-            <li>Shippo</li>
-            <li>DynamoDB</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className='font-semibold'>Infrastructure</h4>
-          <ul className='text-gray-600'>
-            <li>Terraform</li>
-            <li>AWS Cognito</li>
-            <li>CloudFront CDN</li>
-            <li>API Gateway</li>
-            <li>GitHub Actions</li>
-          </ul>
-        </div>
-      </div>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Managed Sites
-      </h2>
-      <p className='my-5'>
-        I built, deployed, and continue to manage these sites:
-      </p>
-      <div className='flex flex-col space-y-2'>
-        <Link
-          to='https://mandismickles.com'
-          target='_blank'
-          className='text-blue-500 flex items-center hover:underline'
-        >
-          <img src={MandisMicklesLogo} className='w-6 h-6 mr-2' alt="Mandi's Mickles logo" />
-          mandismickles.com
-        </Link>
-        <Link
-          to='https://mickleskitchen.com'
-          target='_blank'
-          className='text-blue-500 flex items-center hover:underline'
-        >
-          <img src={MicklesKithcenLogo} className='w-6 h-6 mr-2' alt="Mickles Kitchen logo" />
-          mickleskitchen.com
-        </Link>
-        <Link
-          to='https://lotusbodywork.ca'
-          target='_blank'
-          className='text-blue-500 flex items-center hover:underline'
-        >
-          <img src={LotusLogo} className='w-6 h-6 mr-2' alt="Lotus Bodywork logo" />
-          lotusbodywork.ca
-        </Link>
-      </div>
-    </div>
-  );
-};
+    }
+    role={[
+      {
+        title: 'The platform',
+        items: [
+          'Designed and built it alone, from one store to many',
+          "Two live storefronts (Mandi's Mickles, Bisque & Co), tenant admin and an operator console",
+          "Admin requests scoped by the business in the user's verified token",
+        ],
+      },
+      {
+        title: 'Backend and infrastructure',
+        items: [
+          'Node 22 Lambdas behind API Gateway, with DynamoDB and Cognito',
+          "Each business's secrets in Parameter Store, under its own path",
+          'Terraform across 19 modules, deployed by CI through GitHub OIDC',
+        ],
+      },
+      {
+        title: 'Checkout',
+        items: [
+          'Payments through Square, connected per business',
+          "Shipping rates from each business's own Shippo account, server-side",
+          'Delivery zones as map polygons, matched against the geocoded address',
+        ],
+      },
+    ]}
+    techStack={[
+      { category: 'Frontend', items: ['Angular', 'TypeScript', 'Nx'] },
+      { category: 'Backend', items: ['Node.js on AWS Lambda', 'API Gateway', 'DynamoDB', 'Cognito'] },
+      { category: 'Infrastructure', items: ['Terraform', 'S3 + CloudFront', 'GitHub Actions'] },
+      { category: 'Integrations', items: ['Square', 'Shippo'] },
+    ]}
+  />
+);
 
 export default Mickles;

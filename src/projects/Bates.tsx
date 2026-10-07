@@ -1,160 +1,80 @@
 import './Bates.scss';
-import { Link } from 'react-router-dom';
 import GithubLogo from '../assets/github-logo.png';
 import Logo from '../components/Logo';
+import ProjectLayout from '../components/ProjectLayout';
 
-const Bates: React.FC = () => {
-  return (
-    <div className='w-full p-3 pr-5'>
-      <div className='my-5'>
-        <div className='float-right ml-4 mt-1 flex'>
-          <Logo />
-          <div className='logo text-8xl justify-self-start text-purple-600 flex flex-col translate-y-1'>
-            Bates <span>Solutions</span>
-          </div>
+const repos = [
+  'squareup',
+  'stripe',
+  'clover',
+  'portfolio',
+  'bates-solutions-example',
+  'bates-solutions-example-common',
+  'bates-solutions-common',
+];
+
+const Bates: React.FC = () => (
+  <ProjectLayout
+    logo={
+      <div className='flex' aria-hidden='true'>
+        <Logo />
+        <div className='logo text-8xl justify-self-start text-purple-600 flex flex-col translate-y-1'>
+          Bates <span>Solutions</span>
         </div>
       </div>
-
-      <p className='my-5'>
-        Founded in 2013 in Vancouver, Canada. I work with Canadian, US and UK
-        software companies. Most of my work has been in{' '}
-        <strong>healthcare software</strong>, and these days it also covers
-        commerce platforms, SaaS and cloud infrastructure. My TypeScript SDKs
-        for the Square, Stripe and Clover APIs are open source (MIT). The source
-        for this portfolio and an archived microservices example is public on
-        GitHub.
+    }
+    name='Bates Solutions'
+    tagline='My consultancy and product studio, founded 2013 in Vancouver, Canada.'
+    links={[
+      { label: 'bates-solutions.com', url: 'https://bates-solutions.com' },
+      ...repos.map((repo) => ({
+        label: `mbates/${repo}`,
+        url: `https://github.com/mbates/${repo}`,
+        icon: GithubLogo,
+      })),
+    ]}
+    metrics={['Founded 2013', 'Open-source SDKs (MIT)']}
+    overview={
+      <p>
+        I work with Canadian, US and UK software companies. Most of my work has been in{' '}
+        <strong>healthcare software</strong>, and these days it also covers commerce platforms,
+        SaaS and cloud infrastructure. My TypeScript SDKs for the Square, Stripe and Clover APIs
+        are open source (MIT). The source for this portfolio and an archived microservices example
+        is public on GitHub.
       </p>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        What I Built
-      </h2>
-
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 my-5'>
-        <div className='bg-gray-50 p-4 rounded-lg'>
-          <h3 className='font-semibold text-lg mb-2'>This Portfolio</h3>
-          <ul className='list-disc pl-5 text-sm space-y-1'>
-            <li>React 19 with TypeScript</li>
-            <li>Interactive terminal interface</li>
-            <li>Tailwind CSS styling</li>
-            <li>Serverless contact form (Lambda + SES)</li>
-            <li>S3 + CloudFront hosting via GitHub Actions</li>
-          </ul>
-        </div>
-        <div className='bg-gray-50 p-4 rounded-lg'>
-          <h3 className='font-semibold text-lg mb-2'>Microservices Example</h3>
-          <ul className='list-disc pl-5 text-sm space-y-1'>
-            <li>Kubernetes orchestration</li>
-            <li>TypeScript + Express services</li>
-            <li>NATS pub/sub messaging</li>
-            <li>MongoDB persistence</li>
-            <li>Auth service + example service with Jest tests</li>
-            <li>
-              Two npm libraries shared between services: common components for
-              the example, and global components for Express projects
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Tech Stack
-      </h2>
-      <div className='grid grid-cols-2 md:grid-cols-3 gap-2 my-5 text-sm'>
-        <div>
-          <h4 className='font-semibold'>Frontend</h4>
-          <ul className='text-gray-600'>
-            <li>React</li>
-            <li>react-terminal</li>
-            <li>Tailwind CSS</li>
-            <li>Axios</li>
-            <li>Vite</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className='font-semibold'>Backend</h4>
-          <ul className='text-gray-600'>
-            <li>AWS Lambda</li>
-            <li>API Gateway</li>
-            <li>SES</li>
-            <li>Serverless Framework</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className='font-semibold'>Infrastructure</h4>
-          <ul className='text-gray-600'>
-            <li>S3 + CloudFront</li>
-            <li>GitHub Actions CI/CD</li>
-            <li>Kubernetes (example)</li>
-            <li>NATS + MongoDB (example)</li>
-          </ul>
-        </div>
-      </div>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Source Code
-      </h2>
-      <div className='flex flex-col space-y-3'>
-        <Link
-          target='_blank'
-          to='https://github.com/mbates/squareup'
-          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
-        >
-          <img src={GithubLogo} className='w-6 mr-1' alt='GitHub logo' />
-          mbates/squareup
-        </Link>
-        <Link
-          target='_blank'
-          to='https://github.com/mbates/stripe'
-          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
-        >
-          <img src={GithubLogo} className='w-6 mr-1' alt='GitHub logo' />
-          mbates/stripe
-        </Link>
-        <Link
-          target='_blank'
-          to='https://github.com/mbates/clover'
-          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
-        >
-          <img src={GithubLogo} className='w-6 mr-1' alt='GitHub logo' />
-          mbates/clover
-        </Link>
-        <Link
-          target='_blank'
-          to='https://github.com/mbates/portfolio'
-          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
-        >
-          <img src={GithubLogo} className='w-6 mr-1' alt='GitHub logo' />
-          mbates/portfolio
-        </Link>
-        <Link
-          target='_blank'
-          to='https://github.com/mbates/bates-solutions-example'
-          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
-        >
-          <img src={GithubLogo} className='w-6 mr-1' alt='GitHub logo' />
-          mbates/bates-solutions-example
-        </Link>
-        <Link
-          target='_blank'
-          to='https://github.com/mbates/bates-solutions-example-common'
-          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
-        >
-          <img src={GithubLogo} className='w-6 mr-1' alt='GitHub logo' />
-          mbates/bates-solutions-example-common
-        </Link>
-        <Link
-          target='_blank'
-          to='https://github.com/mbates/bates-solutions-common'
-          className='github-button text-blue-500 rounded-full border-2 border-gray-700 p-2 bg-purple-100'
-        >
-          <img src={GithubLogo} className='w-6 mr-1' alt='GitHub logo' />
-          mbates/bates-solutions-common
-        </Link>
-      </div>
-
-      <br />
-    </div>
-  );
-};
+    }
+    role={[
+      {
+        title: 'This Portfolio',
+        items: [
+          'React 19 with TypeScript',
+          'Interactive terminal interface',
+          'Tailwind CSS styling',
+          'Serverless contact form (Lambda + SES)',
+          'S3 + CloudFront hosting via GitHub Actions',
+        ],
+      },
+      {
+        title: 'Microservices Example',
+        items: [
+          'Kubernetes orchestration',
+          'TypeScript + Express services',
+          'NATS pub/sub messaging',
+          'MongoDB persistence',
+          'Auth service + example service with Jest tests',
+          'Two npm libraries shared between services: common components for the example, and global components for Express projects',
+        ],
+      },
+    ]}
+    techStack={[
+      { category: 'Frontend', items: ['React', 'react-terminal', 'Tailwind CSS', 'Axios', 'Vite'] },
+      { category: 'Backend', items: ['AWS Lambda', 'API Gateway', 'SES', 'Serverless Framework'] },
+      {
+        category: 'Infrastructure',
+        items: ['S3 + CloudFront', 'GitHub Actions CI/CD', 'Kubernetes (example)', 'NATS + MongoDB (example)'],
+      },
+    ]}
+  />
+);
 
 export default Bates;

@@ -1,135 +1,72 @@
-import { Link } from 'react-router-dom';
 import Logo from '../assets/casechek-logo.png';
+import ProjectLayout from '../components/ProjectLayout';
 
-const Casechek: React.FC = () => {
-  return (
-    <div className='w-full p-3 pr-5'>
-      <Link
-        to='https://casechek.com'
-        className='float-right w-100'
-        target='_blank'
-      >
-        <img src={Logo} alt="Casechek logo" />
-      </Link>
-      <p className='my-5'>
-        <Link to='https://casechek.com' className='text-blue-400' target='_blank'>
-          Casechek Inc.
-        </Link>{' '}
-        automates implant supply chain workflows for hospitals, from procurement through
-        payment. Their platform serves <strong>200+ hospitals</strong> including UCLA Health,
-        Northwestern Medicine, and University of Iowa Health Care.
+// Facts match the company case study (bates-solutions.com/work/casechek) and the resume.
+const Casechek: React.FC = () => (
+  <ProjectLayout
+    logo={<img src={Logo} className='w-40' alt='' />}
+    name='Casechek'
+    tagline='Founding engineer, 2013 to 2024: a HIPAA-regulated platform for the surgical devices vendors bring into hospitals.'
+    links={[
+      { label: 'casechek.com', url: 'https://www.casechek.com' },
+      { label: 'Case study', url: 'https://bates-solutions.com/work/casechek' },
+    ]}
+    metrics={[
+      '200+ US hospitals',
+      '2023 Chicago Innovation Award (Up-and-Comer)',
+      '2023 SMI Tom Hughes Collaboration Award',
+    ]}
+    overview={
+      <p>
+        Casechek runs the bill-only and consignment side of surgery: the implants and loaner trays
+        that device vendors bring into a hospital for a case. I was its founding engineer, wrote
+        the original platform from its first commit, and scaled it from the first customer to more
+        than <strong>200 US hospitals</strong>.
       </p>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        My Role
-      </h2>
-      <p className='my-5'>
-        Founding engineer from inception. Built the entire platform architecture, grew the
-        engineering team, and scaled to enterprise-grade infrastructure. Our work earned
-        the <strong>2023 Chicago Innovation Award</strong> and <strong>2023 SMI Tom Hughes
-        Collaboration Award</strong> with Northwestern Medicine.
-      </p>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        What I Built
-      </h2>
-
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 my-5'>
-        <div className='bg-gray-50 p-4 rounded-lg'>
-          <h3 className='font-semibold text-lg mb-2'>CaseDoc Mobile App</h3>
-          <ul className='list-disc pl-5 text-sm space-y-1'>
-            <li>Flutter app for iOS & Android</li>
-            <li>Loaner and bill-only management</li>
-            <li>Barcode scanning for surgical items</li>
-            <li>Real-time tray template management</li>
-            <li>Fastlane deployment to app stores</li>
-          </ul>
-        </div>
-        <div className='bg-gray-50 p-4 rounded-lg'>
-          <h3 className='font-semibold text-lg mb-2'>Hospital Portal</h3>
-          <ul className='list-disc pl-5 text-sm space-y-1'>
-            <li>Angular web application</li>
-            <li>Case search and bill management</li>
-            <li>Auth0 authentication</li>
-            <li>PubNub real-time updates</li>
-            <li>Multi-environment deployment</li>
-          </ul>
-        </div>
-        <div className='bg-gray-50 p-4 rounded-lg'>
-          <h3 className='font-semibold text-lg mb-2'>Kiosk System</h3>
-          <ul className='list-disc pl-5 text-sm space-y-1'>
-            <li>Angular + Electron desktop app</li>
-            <li>Physical kiosk for tray scanning</li>
-            <li>Lambda@Edge authentication</li>
-            <li>Auto-update capabilities</li>
-            <li>C# .NET scanner integration</li>
-          </ul>
-        </div>
-        <div className='bg-gray-50 p-4 rounded-lg'>
-          <h3 className='font-semibold text-lg mb-2'>Backend Platform</h3>
-          <ul className='list-disc pl-5 text-sm space-y-1'>
-            <li>NestJS microservices (Nx monorepo)</li>
-            <li>Symfony/API-Platform APIs</li>
-            <li>HL7 hospital system integrations</li>
-            <li>Kafka event streaming</li>
-            <li>Bill reconciliation automation</li>
-          </ul>
-        </div>
-      </div>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Infrastructure
-      </h2>
-      <p className='my-5'>
-        Built highly available, HIPAA-compliant infrastructure on AWS using
-        <strong> Terraform</strong> and <strong>AWS CDK</strong>. Implemented CI/CD
-        with GitHub Actions deploying to AWS, App Store, and Google Play.
-      </p>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Tech Stack
-      </h2>
-      <div className='grid grid-cols-2 md:grid-cols-3 gap-2 my-5 text-sm'>
-        <div>
-          <h4 className='font-semibold'>Frontend</h4>
-          <ul className='text-gray-600'>
-            <li>Angular 12-17</li>
-            <li>Flutter</li>
-            <li>Electron</li>
-            <li>PrimeNG</li>
-            <li>RxJS</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className='font-semibold'>Backend</h4>
-          <ul className='text-gray-600'>
-            <li>NestJS</li>
-            <li>Symfony</li>
-            <li>PostgreSQL/Aurora</li>
-            <li>Kafka</li>
-            <li>OpenSearch</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className='font-semibold'>AWS Services</h4>
-          <ul className='text-gray-600'>
-            <li>ECS/Fargate</li>
-            <li>Lambda@Edge</li>
-            <li>RDS/DynamoDB</li>
-            <li>CloudFront/WAF</li>
-            <li>AppSync/GraphQL</li>
-          </ul>
-        </div>
-      </div>
-
-      <h2 className='text-3xl font-semibold tracking-tight my-5'>
-        Integrations
-      </h2>
-      <p className='text-sm text-gray-600'>
-        Auth0, LaunchDarkly, PubNub, Qvera HL7, Sentry, Mailgun, Mailjet
-      </p>
-    </div>
-  );
-};
+    }
+    role={[
+      {
+        title: 'The original platform',
+        items: [
+          'Wrote the first API from its first commit in 2014: 4,501 of its 4,743 commits',
+          'Surgeries, hospitals, vendors, notifications, sterilisation, printing and billing',
+          'In production for ten years',
+        ],
+      },
+      {
+        title: 'Label printing',
+        items: [
+          'Label engine: Zebra ZPL in seven formats, plus IPL for Intermec printers',
+          'Moved printing to the second API while older .NET warehouse kiosks kept printing',
+        ],
+      },
+      {
+        title: 'The hospital kiosk',
+        items: [
+          'Started the Angular kiosk app in 2018',
+          'In 2023 separated it from Electron and moved it from Angular 13 to 16',
+          'Its hosting as a Terraform module: CloudFront, S3 and WAF in four environments',
+        ],
+      },
+      {
+        title: 'Team and integrations',
+        items: [
+          'Hired, mentored and managed a team of up to 7 engineers',
+          'HL7 integrations with hospital systems through Qvera',
+          'Moved live systems from Travis CI to GitHub Actions, AWS CDK to Terraform, OAuth to Auth0',
+        ],
+      },
+    ]}
+    techStack={[
+      { category: 'Backend', items: ['PHP', 'Symfony', 'API Platform', 'MySQL / Aurora'] },
+      { category: 'Frontend', items: ['Angular', 'Electron'] },
+      {
+        category: 'Infrastructure',
+        items: ['AWS', 'EKS', 'Elastic Beanstalk', 'CloudFront + WAF', 'Terraform', 'Helm', 'GitHub Actions'],
+      },
+      { category: 'Integrations', items: ['Auth0', 'PubNub', 'Qvera HL7', 'Zebra ZPL'] },
+    ]}
+  />
+);
 
 export default Casechek;
