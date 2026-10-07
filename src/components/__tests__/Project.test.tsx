@@ -11,7 +11,7 @@ describe('Project', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText(/automates implant supply chain/i)).toBeInTheDocument();
+    expect(screen.getByText(/bill-only and consignment side of surgery/i)).toBeInTheDocument();
   });
 
   it('renders OpsKwan project', () => {
@@ -21,7 +21,7 @@ describe('Project', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText(/multi-tenant saas platform/i)).toBeInTheDocument();
+    expect(screen.getByText(/logistics platform for an orthopaedic implant distributor/i)).toBeInTheDocument();
   });
 
   it('renders Mickles project', () => {
@@ -31,7 +31,7 @@ describe('Project', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText(/e-commerce platform/i)).toBeInTheDocument();
+    expect(screen.getByText(/turned that store into/i)).toBeInTheDocument();
   });
 
   it('renders Bates project', () => {
@@ -41,7 +41,7 @@ describe('Project', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText(/founded in 2013/i)).toBeInTheDocument();
+    expect(screen.getByText(/consultancy and product studio/i)).toBeInTheDocument();
   });
 
   it('shows message for unknown project', () => {
