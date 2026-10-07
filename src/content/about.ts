@@ -28,6 +28,11 @@ export const projectSummaries: { name: string; summary: string }[] = [
       'Director of Development, 2009 to 2024: the logistics platform Zimmer Biomet used for over 40% of Canadian hospitals.',
   },
   {
+    name: 'JB Karting',
+    summary:
+      'Built solo since 2026: a race site for a junior kart racer in the UK, with an admin the family publish from and race results fetched every race weekend.',
+  },
+  {
     name: "Mandi's Mickles",
     summary:
       "Custom e-commerce since 2019 for a Vancouver pickle business, getMickled's first customer.",
