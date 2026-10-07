@@ -33,7 +33,7 @@ const Bates: React.FC = () => (
         icon: GithubLogo,
       })),
     ]}
-    metrics={['Founded 2013', 'Open source (MIT)']}
+    metrics={['Founded 2013', 'Open-source SDKs (MIT)']}
     overview={
       <p>
         I work with Canadian, US and UK software companies. Most of my work has been in{' '}
