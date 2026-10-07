@@ -16,7 +16,7 @@ const repos = [
 const Bates: React.FC = () => (
   <ProjectLayout
     logo={
-      <div className='flex'>
+      <div className='flex' aria-hidden='true'>
         <Logo />
         <div className='logo text-8xl justify-self-start text-purple-600 flex flex-col translate-y-1'>
           Bates <span>Solutions</span>

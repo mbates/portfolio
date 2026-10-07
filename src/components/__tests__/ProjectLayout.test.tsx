@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import ProjectLayout, { type ProjectLayoutProps } from '../ProjectLayout';
 
 const props: ProjectLayoutProps = {
-  logo: <img src='logo.png' alt='Acme logo' />,
+  logo: <img src='logo.png' alt='' />,
   name: 'Acme',
   tagline: 'A tagline',
   links: [{ label: 'acme.com', url: 'https://acme.com' }],
@@ -22,7 +22,6 @@ describe('ProjectLayout', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: 'Acme' })).toBeInTheDocument();
     expect(screen.getByText('A tagline')).toBeInTheDocument();
-    expect(screen.getByAltText('Acme logo')).toBeInTheDocument();
     expect(screen.getByText('The overview.')).toBeInTheDocument();
     const figures = screen.getByRole('list', { name: 'Key figures' });
     expect(within(figures).getAllByRole('listitem').map((li) => li.textContent)).toEqual([
@@ -58,6 +57,27 @@ describe('ProjectLayout', () => {
 
     expect(screen.getByRole('heading', { level: 4, name: 'Backend' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 4, name: 'Frontend' })).toBeInTheDocument();
+  });
+
+  it('gives untitled groups no empty heading and tolerates repeated items', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+    render(
+      <ProjectLayout
+        {...props}
+        role={[
+          { title: 'Backend', items: ['Same', 'Same'] },
+          { items: ['Loose item'] },
+        ]}
+        techStack={[{ category: 'Tools', items: ['Same', 'Same'] }]}
+      />,
+    );
+
+    expect(screen.getAllByRole('heading', { level: 4 }).map((h) => h.textContent)).toEqual([
+      'Backend',
+    ]);
+    expect(screen.getByText('Loose item')).toBeInTheDocument();
+    expect(error).not.toHaveBeenCalled();
+    error.mockRestore();
   });
 
   it('leaves out the links and figures when there are none', () => {

@@ -1,20 +1,16 @@
 import MandisMicklesLogo from '../assets/mandis-mickles-logo.png';
-import MicklesKitchenLogo from '../assets/mickles-kitchen-logo.png';
-import LotusLogo from '../assets/lotus-logo.png';
 import ProjectLayout from '../components/ProjectLayout';
 
 // Facts match the company case study (bates-solutions.com/work/getmickled) and the resume.
 const Mickles: React.FC = () => (
   <ProjectLayout
-    logo={<img src={MandisMicklesLogo} className='w-32' alt="Mandi's Mickles logo" />}
+    logo={<img src={MandisMicklesLogo} className='w-32' alt='' />}
     name='getMickled'
     tagline="Founder and principal engineer, since 2019: a multi-tenant commerce platform, grown from Mandi's Mickles' store."
     links={[
       { label: 'getmickled.com', url: 'https://getmickled.com' },
       { label: 'mandismickles.com', url: 'https://mandismickles.com', icon: MandisMicklesLogo },
       { label: 'bisqueco.com', url: 'https://bisqueco.com' },
-      { label: 'mickleskitchen.com', url: 'https://mickleskitchen.com', icon: MicklesKitchenLogo },
-      { label: 'lotusbodywork.ca', url: 'https://lotusbodywork.ca', icon: LotusLogo },
       { label: 'Case study', url: 'https://bates-solutions.com/work/getmickled' },
     ]}
     metrics={['2 live storefronts', '7 apps on one platform', '19 Terraform modules', '1,106 merged PRs']}
@@ -32,7 +28,7 @@ const Mickles: React.FC = () => (
         items: [
           'Designed and built it alone, from one store to many',
           "Two live storefronts (Mandi's Mickles, Bisque & Co), tenant admin and an operator console",
-          'One business can never see or change another',
+          "Admin requests scoped by the business in the user's verified token",
         ],
       },
       {

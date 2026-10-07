@@ -19,6 +19,7 @@ export interface StackGroup {
 }
 
 export interface ProjectLayoutProps {
+  // Decorative: the name is the heading beside it, so give an <img> an empty alt.
   logo: ReactNode;
   name: string;
   tagline: string;
@@ -91,12 +92,12 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
         <h3 className='my-3 text-2xl font-semibold tracking-tight'>My Role</h3>
         {grouped ? (
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
-            {role.map((group) => (
-              <div key={group.title} className='rounded-lg bg-gray-50 p-4'>
-                <h4 className='mb-2 text-lg font-semibold'>{group.title}</h4>
+            {role.map((group, g) => (
+              <div key={g} className='rounded-lg bg-gray-50 p-4'>
+                {group.title && <h4 className='mb-2 text-lg font-semibold'>{group.title}</h4>}
                 <ul className='list-disc space-y-1 pl-5 text-sm'>
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
+                  {group.items.map((item, i) => (
+                    <li key={i}>{item}</li>
                   ))}
                 </ul>
               </div>
@@ -104,8 +105,8 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
           </div>
         ) : (
           <ul className='list-disc space-y-1 pl-5'>
-            {role.flatMap((group) => group.items).map((item) => (
-              <li key={item}>{item}</li>
+            {role.flatMap((group) => group.items).map((item, i) => (
+              <li key={i}>{item}</li>
             ))}
           </ul>
         )}
@@ -119,8 +120,8 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
               <dt className='text-sm font-semibold'>{group.category}</dt>
               <dd>
                 <ul className='mt-1 flex flex-wrap gap-1.5'>
-                  {group.items.map((item) => (
-                    <li key={item} className='rounded-full bg-gray-100 px-2 py-0.5 text-sm'>
+                  {group.items.map((item, i) => (
+                    <li key={i} className='rounded-full bg-gray-100 px-2 py-0.5 text-sm'>
                       {item}
                     </li>
                   ))}

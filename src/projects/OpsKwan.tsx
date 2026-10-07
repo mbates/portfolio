@@ -4,7 +4,7 @@ import ProjectLayout from '../components/ProjectLayout';
 // Facts match the company case study (bates-solutions.com/work/opskwan) and the resume.
 const OpsKwan: React.FC = () => (
   <ProjectLayout
-    logo={<img src={Logo} className='w-32' alt='OpsKwan logo' />}
+    logo={<img src={Logo} className='w-32' alt='' />}
     name='OpsKwan'
     tagline='Director of Development, 2009 to 2024: SaaS logistics for medical device distribution.'
     links={[{ label: 'Case study', url: 'https://bates-solutions.com/work/opskwan' }]}
