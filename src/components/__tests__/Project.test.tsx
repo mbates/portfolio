@@ -55,6 +55,17 @@ describe('Project', () => {
     expect(screen.getByText(/sponsors want to see results/i)).toBeInTheDocument();
   });
 
+  it('renders Zeepler project', () => {
+    render(
+      <BrowserRouter>
+        <Project project="zeepler" />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: 'Zeepler' })).toBeInTheDocument();
+    expect(screen.getByText(/takes the label as json/i)).toBeInTheDocument();
+  });
+
   it('shows message for unknown project', () => {
     render(
       <BrowserRouter>

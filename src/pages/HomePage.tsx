@@ -9,6 +9,7 @@ import OpsKwanLogo from '../assets/opskwan-logo-small.png';
 import BatesLogo from '../assets/favicon.ico';
 import MandisMicklesLogo from '../assets/mandis-mickles-logo.png';
 import JbKartingLogo from '../assets/jb-karting-logo-small.png';
+import ZeeplerLogo from '../assets/zeepler-logo.svg';
 
 export default function HomePage() {
   const [content, setContent] = useState('');
@@ -110,6 +111,12 @@ export default function HomePage() {
               <div className='flex flex-row pt-1 pb-1 pl-3 pr-3 mt-1 ml-2 bg-stone-50 border-white border-l-1 border-t-1 border-r-1 rounded-tl-lg rounded-tr-lg'>
                 <img src={JbKartingLogo} className='w-4 h-4 mt-1 mr-1' alt='' />{' '}
                 <span>JB Karting</span>
+              </div>
+            )}
+            {project === 'zeepler' && (
+              <div className='flex flex-row pt-1 pb-1 pl-3 pr-3 mt-1 ml-2 bg-stone-50 border-white border-l-1 border-t-1 border-r-1 rounded-tl-lg rounded-tr-lg'>
+                <img src={ZeeplerLogo} className='w-4 h-4 mt-1 mr-1' alt='' />{' '}
+                <span>Zeepler</span>
               </div>
             )}
             {project === 'bates' && (

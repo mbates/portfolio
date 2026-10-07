@@ -37,4 +37,9 @@ export const projectSummaries: { name: string; summary: string }[] = [
     summary:
       "Custom e-commerce since 2019 for a Vancouver pickle business, getMickled's first customer.",
   },
+  {
+    name: 'Zeepler',
+    summary:
+      'My JSON-to-ZPL label API since 2025: accounts, hashed API keys, per-label metering and Square billing, run in two AWS regions.',
+  },
 ];
