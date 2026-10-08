@@ -86,6 +86,7 @@ describe('Project', () => {
     expect(projects).toEqual([
       'bates',
       'casechek',
+      'firstpoint',
       'jbkarting',
       'mickles',
       'opskwan',
@@ -115,6 +116,17 @@ describe('Project', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: 'Well-Plated' })).toBeInTheDocument();
     expect(screen.getByText(/largely my colleagues/i)).toBeInTheDocument();
+  });
+
+  it('renders the FirstPoint project', () => {
+    render(
+      <BrowserRouter>
+        <Project project="firstpoint" />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: 'FirstPoint Energy' })).toBeInTheDocument();
+    expect(screen.getByText(/took it\s+in-house/i)).toBeInTheDocument();
   });
 
   it('shows message for unknown project', () => {
