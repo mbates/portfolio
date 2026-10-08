@@ -12,10 +12,10 @@ const FirstPoint: React.FC = () => (
     metrics={['120 merged PRs in nine weeks', '256 tests', 'HiGHS LP solver in Lambda']}
     overview={
       <p>
-        FirstPoint Energy manages battery storage across multiple sites, and a battery earns its
-        keep by cutting the peaks in a site&apos;s demand. I designed the system, from the services and data model to
-        the API and deployment, then built it alone: a platform for sites, their usage data and
-        their batteries, with a peak-shaving optimiser at its centre. The client then took it
+        For FirstPoint Energy, an energy systems company, I designed the system, from the services
+        and data model to the API and deployment, then built it alone: a platform for sites, their
+        usage data and their batteries. At its centre is a peak-shaving optimiser, since a battery
+        earns its keep by cutting the peaks in a site&apos;s demand. The client then took it
         in-house.
       </p>
     }
@@ -24,7 +24,7 @@ const FirstPoint: React.FC = () => (
         title: 'The optimiser',
         items: [
           'Peak-shaving thresholds on the HiGHS linear-programming solver',
-          'Compiled to WebAssembly and bundled to run inside AWS Lambda',
+          'Its WebAssembly build bundled to run inside AWS Lambda',
           'Monthly, weekly and daily views, with a seasonal projection for next month',
         ],
       },
@@ -40,7 +40,7 @@ const FirstPoint: React.FC = () => (
         title: 'Architecture',
         items: [
           'Designed the services, data model, OpenAPI spec and deployment',
-          'Users, sites, emails and website services on Lambda and API Gateway',
+          'Users and sites APIs on Lambda and API Gateway, an emails Lambda fed by SQS, the app on S3 and CloudFront',
           'Seven DynamoDB tables, Cognito sign-in, invitations through SQS with a dead-letter queue',
         ],
       },
