@@ -47,4 +47,9 @@ export const projectSummaries: { name: string; summary: string }[] = [
     summary:
       'Open-source TypeScript SDKs for Square, Stripe and Clover since 2026, MIT on JSR, with one shared design; squareup is the payment layer under getMickled.',
   },
+  {
+    name: 'Well-Plated',
+    summary:
+      'Senior software engineer since December 2025 on an eating-disorder recovery platform: the release pipeline that ships its three apps to the App Store and Google Play.',
+  },
 ];

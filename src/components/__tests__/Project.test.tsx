@@ -85,6 +85,7 @@ describe('Project', () => {
       'mickles',
       'opskwan',
       'sdks',
+      'wellplated',
       'zeepler',
     ]);
   });
@@ -98,6 +99,17 @@ describe('Project', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: 'Payment SDKs' })).toBeInTheDocument();
     expect(screen.getByText(/share one design/i)).toBeInTheDocument();
+  });
+
+  it('renders the Well-Plated project, framed as my part of a team', () => {
+    render(
+      <BrowserRouter>
+        <Project project="wellplated" />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: 'Well-Plated' })).toBeInTheDocument();
+    expect(screen.getByText(/largely my colleagues/i)).toBeInTheDocument();
   });
 
   it('shows message for unknown project', () => {
