@@ -49,8 +49,8 @@ const WellPlated: React.FC = () => (
       {
         title: 'Auth reliability',
         items: [
-          'Found and fixed, before launch, an iOS App Attest check that had never worked',
-          'Wrote the postmortem, and the prevention work that followed',
+          'Fixed iOS sign-in for returning users before launch: App Attest signatures needed converting from DER',
+          'Wrote the incident review, and the safeguards that followed',
         ],
       },
     ]}

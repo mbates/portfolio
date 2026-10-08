@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Project, { projects } from '../Project';
+import { projectSummaries } from '../../content/about';
 
 describe('Project', () => {
   it('renders Casechek project', () => {
@@ -75,6 +76,10 @@ describe('Project', () => {
 
     expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument();
     expect(screen.queryByText(/doesn't exist/i)).not.toBeInTheDocument();
+  });
+
+  it('gives every listed project a summary for the About dialog and the static page', () => {
+    expect(projectSummaries).toHaveLength(projects.length);
   });
 
   it('lists the projects the terminal can show', () => {
