@@ -7,7 +7,8 @@ const sdks = ['squareup', 'stripe', 'clover'];
 // Facts match the company site's /lab entry (libs/content/projects/payment-sdks) and the resume.
 const PaymentSdks: React.FC = () => (
   <ProjectLayout
-    logo={<img src={Logo} className='w-16' alt='' />}
+    // favicon.ico's largest image is 48px; shown at that size so it stays sharp.
+    logo={<img src={Logo} className='w-12' alt='' />}
     name='Payment SDKs'
     tagline='Open source, since 2026: one typed TypeScript design across the Square, Stripe and Clover APIs.'
     links={sdks.flatMap((sdk) => [
