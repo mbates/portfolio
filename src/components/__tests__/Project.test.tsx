@@ -78,7 +78,26 @@ describe('Project', () => {
   });
 
   it('lists the projects the terminal can show', () => {
-    expect(projects).toEqual(['bates', 'casechek', 'jbkarting', 'mickles', 'opskwan', 'zeepler']);
+    expect(projects).toEqual([
+      'bates',
+      'casechek',
+      'jbkarting',
+      'mickles',
+      'opskwan',
+      'sdks',
+      'zeepler',
+    ]);
+  });
+
+  it('renders the payment SDKs project', () => {
+    render(
+      <BrowserRouter>
+        <Project project="sdks" />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: 'Payment SDKs' })).toBeInTheDocument();
+    expect(screen.getByText(/share one design/i)).toBeInTheDocument();
   });
 
   it('shows message for unknown project', () => {

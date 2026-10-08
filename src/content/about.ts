@@ -42,4 +42,9 @@ export const projectSummaries: { name: string; summary: string }[] = [
     summary:
       'My JSON-to-ZPL label API since 2025: accounts, hashed API keys, per-label metering and Square billing, run in two AWS regions.',
   },
+  {
+    name: 'Payment SDKs',
+    summary:
+      'Open-source TypeScript SDKs for Square, Stripe and Clover since 2026, MIT on JSR, with one shared design; squareup is the payment layer under getMickled.',
+  },
 ];
