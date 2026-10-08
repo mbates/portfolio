@@ -1,7 +1,7 @@
 // The About copy and the project summaries, in one place: the `about` dialog renders them, and
 // the build writes them into index.html as a static <main> for crawlers and screen readers
 // (vite.config.ts), so the two can't drift. Every fact comes from the bates-solutions monorepo's
-// libs/content/career/master.md.
+// libs/content: career/master.md and the projects' case studies.
 
 export const about: string[] = [
   "I'm a full stack engineer in Vancouver. I've been shipping production software since 2000: first in the UK, where I built out an NHS medical record system at hospitals including Guy's and St Thomas', then in Canada from 2003.",
@@ -36,5 +36,10 @@ export const projectSummaries: { name: string; summary: string }[] = [
     name: "Mandi's Mickles",
     summary:
       "Custom e-commerce since 2019 for a Vancouver pickle business, getMickled's first customer.",
+  },
+  {
+    name: 'Zeepler',
+    summary:
+      'My JSON-to-ZPL label API since 2025: accounts, hashed API keys, per-label metering and Square billing, run in two AWS regions.',
   },
 ];
