@@ -5,12 +5,13 @@ import Bates from '../projects/Bates';
 import JbKarting from '../projects/JbKarting';
 import Zeepler from '../projects/Zeepler';
 import PaymentSdks from '../projects/PaymentSdks';
+import WellPlated from '../projects/WellPlated';
 
 interface ProjectProps {
   project: string;
 }
 
-export const projects = ['bates', 'casechek', 'jbkarting', 'mickles', 'opskwan', 'sdks', 'zeepler'];
+export const projects = ['bates', 'casechek', 'jbkarting', 'mickles', 'opskwan', 'sdks', 'wellplated', 'zeepler'];
 
 const Project: React.FC<ProjectProps> = ({ project }) => {
   return (
@@ -22,6 +23,7 @@ const Project: React.FC<ProjectProps> = ({ project }) => {
       {project === 'jbkarting' && <JbKarting />}
       {project === 'zeepler' && <Zeepler />}
       {project === 'sdks' && <PaymentSdks />}
+      {project === 'wellplated' && <WellPlated />}
       {!projects.includes(project) && (
         <div>Project "{project}" doesn't exist</div>
       )}

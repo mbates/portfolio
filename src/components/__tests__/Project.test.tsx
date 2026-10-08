@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Project, { projects } from '../Project';
+import { projectSummaries } from '../../content/about';
 
 describe('Project', () => {
   it('renders Casechek project', () => {
@@ -77,6 +78,10 @@ describe('Project', () => {
     expect(screen.queryByText(/doesn't exist/i)).not.toBeInTheDocument();
   });
 
+  it('gives every listed project a summary for the About dialog and the static page', () => {
+    expect(projectSummaries).toHaveLength(projects.length);
+  });
+
   it('lists the projects the terminal can show', () => {
     expect(projects).toEqual([
       'bates',
@@ -85,6 +90,7 @@ describe('Project', () => {
       'mickles',
       'opskwan',
       'sdks',
+      'wellplated',
       'zeepler',
     ]);
   });
@@ -98,6 +104,17 @@ describe('Project', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: 'Payment SDKs' })).toBeInTheDocument();
     expect(screen.getByText(/share one design/i)).toBeInTheDocument();
+  });
+
+  it('renders the Well-Plated project, framed as my part of a team', () => {
+    render(
+      <BrowserRouter>
+        <Project project="wellplated" />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByRole('heading', { level: 2, name: 'Well-Plated' })).toBeInTheDocument();
+    expect(screen.getByText(/largely my colleagues/i)).toBeInTheDocument();
   });
 
   it('shows message for unknown project', () => {
