@@ -14,7 +14,8 @@ const Zeepler: React.FC = () => (
     metrics={['207 merged PRs', '2 AWS regions', '3,073 junk sign-ups found and removed']}
     overview={
       <p>
-        Thermal label printers speak ZPL, Zebra&apos;s printer language, and every team that
+        Thermal label printers in hospitals, warehouses and evidence rooms speak ZPL, Zebra&apos;s
+        printer language, and every team that
         prints labels from its own software ends up hand-writing it. Zeepler takes the label as
         JSON and returns ZPL ready to send to the printer. I designed and built all of it, alone,
         and run it in production. It&apos;s live and deliberately not marketed yet.

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import Project from '../Project';
+import Project, { projects } from '../Project';
 
 describe('Project', () => {
   it('renders Casechek project', () => {
@@ -64,6 +64,21 @@ describe('Project', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: 'Zeepler' })).toBeInTheDocument();
     expect(screen.getByText(/takes the label as json/i)).toBeInTheDocument();
+  });
+
+  it.each(projects)('renders a dialog for every listed project: %s', (project) => {
+    render(
+      <BrowserRouter>
+        <Project project={project} />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument();
+    expect(screen.queryByText(/doesn't exist/i)).not.toBeInTheDocument();
+  });
+
+  it('lists the projects the terminal can show', () => {
+    expect(projects).toEqual(['bates', 'casechek', 'jbkarting', 'mickles', 'opskwan', 'zeepler']);
   });
 
   it('shows message for unknown project', () => {
