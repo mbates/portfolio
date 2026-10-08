@@ -52,4 +52,9 @@ export const projectSummaries: { name: string; summary: string }[] = [
     summary:
       'Senior software engineer since December 2025 on an eating-disorder recovery platform: the release pipeline that ships its three apps to the App Store and Google Play.',
   },
+  {
+    name: 'FirstPoint Energy',
+    summary:
+      'Contract, December 2025 to February 2026: a peak-shaving optimiser on the HiGHS solver in Lambda, and the battery-site platform around it, built solo as a prototype.',
+  },
 ];
